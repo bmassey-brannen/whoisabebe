@@ -174,7 +174,24 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
 
           <div class="capture-grid">
             {group.items.map((item) => (
-              <a class="capture-card" href={item.publicPath} target="_blank">
+              item.kind === "Image" ? (
+                <button
+                  class="capture-card capture-card-button"
+                  type="button"
+                  data-lightbox-src={item.publicPath}
+                  data-lightbox-title={item.title}
+                  data-lightbox-path={item.publicPath}
+                >
+                  <img src={item.publicPath} alt={item.title} loading="lazy" />
+
+                  <div class="capture-card-body">
+                    <span>{item.kind}</span>
+                    <strong>{item.title}</strong>
+                    <small>{item.publicPath}</small>
+                  </div>
+                </button>
+              ) : (
+              <a class="capture-card" href={item.publicPath} target="_blank" rel="noreferrer">
                 {item.kind === "Image" ? (
                   <img src={item.publicPath} alt={item.title} loading="lazy" />
                 ) : (
@@ -189,6 +206,7 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
                   <small>{item.publicPath}</small>
                 </div>
               </a>
+              )
             ))}
           </div>
         </section>
@@ -197,9 +215,76 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
     </article>
   </main>
 
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="Close image preview"></button>
+
+    <figure class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">
+        Close
+      </button>
+
+      <img id="lightbox-image" src="" alt="" />
+
+      <figcaption>
+        <strong id="lightbox-title"></strong>
+        <span id="lightbox-path"></span>
+      </figcaption>
+    </figure>
+  </div>
+
   <Footer />
 
 </BaseLayout>
+
+<script>
+  const lightbox = document.querySelector("#image-lightbox");
+  const lightboxImage = document.querySelector("#lightbox-image");
+  const lightboxTitle = document.querySelector("#lightbox-title");
+  const lightboxPath = document.querySelector("#lightbox-path");
+  const imageButtons = document.querySelectorAll("[data-lightbox-src]");
+  const closeButtons = document.querySelectorAll("[data-lightbox-close]");
+
+  function closeLightbox() {
+    if (!lightbox || !(lightboxImage instanceof HTMLImageElement)) return;
+
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    lightboxImage.alt = "";
+    document.body.classList.remove("lightbox-open");
+  }
+
+  imageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (
+        !lightbox ||
+        !(lightboxImage instanceof HTMLImageElement) ||
+        !lightboxTitle ||
+        !lightboxPath
+      ) return;
+
+      const src = button.getAttribute("data-lightbox-src") || "";
+      const title = button.getAttribute("data-lightbox-title") || "Image preview";
+      const path = button.getAttribute("data-lightbox-path") || "";
+
+      lightboxImage.src = src;
+      lightboxImage.alt = title;
+      lightboxTitle.textContent = title;
+      lightboxPath.textContent = path;
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeLightbox);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  });
+</script>
 
 <style>
   .document-review {
@@ -286,6 +371,13 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
     background: white;
   }
 
+  .capture-card-button {
+    cursor: zoom-in;
+    font: inherit;
+    padding: 0;
+    text-align: left;
+  }
+
   .capture-card:hover {
     border-color: #999;
   }
@@ -345,6 +437,85 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
     overflow-wrap: anywhere;
   }
 
+  .image-lightbox {
+    align-items: center;
+    display: none;
+    inset: 0;
+    justify-content: center;
+    padding: 24px;
+    position: fixed;
+    z-index: 50;
+  }
+
+  .image-lightbox[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .lightbox-backdrop {
+    background: rgba(0, 0, 0, 0.82);
+    border: 0;
+    cursor: zoom-out;
+    inset: 0;
+    padding: 0;
+    position: absolute;
+  }
+
+  .lightbox-panel {
+    background: #fff;
+    margin: 0;
+    max-height: min(88vh, 960px);
+    max-width: min(92vw, 1180px);
+    padding: 18px;
+    position: relative;
+    width: max-content;
+    z-index: 1;
+  }
+
+  .lightbox-panel img {
+    display: block;
+    max-height: calc(88vh - 110px);
+    max-width: calc(92vw - 36px);
+    object-fit: contain;
+  }
+
+  .lightbox-panel figcaption {
+    display: grid;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .lightbox-panel figcaption strong,
+  .lightbox-panel figcaption span,
+  .lightbox-close {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .lightbox-panel figcaption span {
+    color: #666;
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
+  }
+
+  .lightbox-close {
+    background: var(--black);
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 10px 12px;
+    position: absolute;
+    right: 18px;
+    text-transform: uppercase;
+    top: 18px;
+    z-index: 2;
+  }
+
+  body.lightbox-open {
+    overflow: hidden;
+  }
+
   @media (max-width: 760px) {
     .archive-summary {
       grid-template-columns: 1fr;
@@ -352,6 +523,22 @@ const pdfCount = captures.filter((item) => item.kind === "PDF").length;
 
     .capture-grid {
       grid-template-columns: 1fr;
+    }
+
+    .image-lightbox {
+      padding: 14px;
+    }
+
+    .lightbox-panel {
+      max-width: 100%;
+      padding: 12px;
+      width: 100%;
+    }
+
+    .lightbox-panel img {
+      max-height: calc(86vh - 120px);
+      max-width: 100%;
+      width: 100%;
     }
   }
 </style>
