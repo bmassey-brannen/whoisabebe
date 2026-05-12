@@ -476,23 +476,15 @@ const waynesboroProperties = [
 
 <style>
   .portrait-figure {
-    max-width: 420px;
+    max-width: 360px;
   }
 
   .mike-report-page {
-    max-width: 1180px;
-  }
-
-  .mike-report-page > p,
-  .mike-report-page > .lede,
-  .mike-report-page > .notice-box,
-  .mike-report-page > .fact-grid,
-  .mike-report-page > ul {
-    max-width: 780px;
+    max-width: 940px;
   }
 
   .wide-table {
-    overflow-x: visible;
+    overflow-x: auto;
     margin: 28px 0 50px;
   }
 
@@ -503,9 +495,9 @@ const waynesboroProperties = [
 
   .wide-table .report-table th,
   .wide-table .report-table td {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     line-height: 1.35;
-    padding: 9px;
+    padding: 8px;
     overflow-wrap: anywhere;
   }
 
@@ -545,8 +537,8 @@ const waynesboroProperties = [
   }
 
   @media (max-width: 920px) {
-    .wide-table {
-      overflow-x: auto;
+    .mike-report-page {
+      max-width: 780px;
     }
 
     .wide-table .report-table {
