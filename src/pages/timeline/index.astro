@@ -1,28 +1,281 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import timeline from "../../data/timeline.json";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import articles from "../../data/articles.json";
+
+const getDateTime = (date) => {
+  const parsed = Date.parse(date);
+  return Number.isNaN(parsed) ? Number.MAX_SAFE_INTEGER : parsed;
+};
+
+const researchItems = [
+  {
+    date: "October 22, 2019",
+    sortDate: "2019-10-22",
+    title: "BirminghamWatch reports on Ramsay-McCormack and Ensley District Developers",
+    description:
+      "BirminghamWatch reported that Ensley District Developers included Irvin Henderson, Carlton Brown, Mike Abebe, and Gizman Abbas in the Ramsay-McCormack redevelopment context.",
+    source: "BirminghamWatch",
+    type: "Local Reporting",
+    url: "https://birminghamwatch.org/2019/10/22/city-allocates-4m-emergency-funding-rehab-ramsay-mccormack/",
+  },
+  {
+    date: "November 21, 2020",
+    sortDate: "2020-11-21",
+    title: "Ensley Rising archived website reviewed",
+    description:
+      "The Wayback Machine capture and local screenshot show an older Ensley Rising team page with Mike Abebe, Carlton Brown, and Gizman Abbas in principal roles.",
+    source: "Internet Archive Wayback Machine",
+    type: "Archived Website",
+    url: "https://web.archive.org/web/20201121181912/https://www.ensleyrising.com/",
+  },
+  {
+    date: "2024",
+    sortDate: "2024-10-01",
+    title: "Highway 199 Tuskegee site document links Abebe Blackbelt Ventures LLC",
+    description:
+      "A Macon County site PDF for Highway 199 and Midway Road in Tuskegee lists Abebe Blackbelt Ventures LLC as current owner and describes a 374-acre site.",
+    source: "Made in Macon property PDF",
+    type: "Property Document",
+    url: "https://properties.madeinmacon.com/files/properties/attachment-1a-business-case-site-advantages-location-and-area-overview-highway-199-site-670e8d8ae542f222341734.pdf",
+  },
+  {
+    date: "October 2012",
+    sortDate: "2012-10-01",
+    title: "ABEBE VENTURES, LLC appears in Georgia entity records",
+    description:
+      "Georgia business records in the current research file include ABEBE VENTURES, LLC with a principal office reference at 249 Milton Ave SE.",
+    source: "Georgia Corporations Division capture",
+    type: "Entity Record",
+    url: "/images/entities/georgia-corporations-division-abebe-search-results.png",
+  },
+  {
+    date: "April 14, 2021",
+    sortDate: "2021-04-14",
+    title: "Direct Invest Development studio page archived",
+    description:
+      "The Wayback Machine capture preserves Direct Invest partner material showing Carlton Brown, Mike Abebe, and Gizman Abbas.",
+    source: "Internet Archive Wayback Machine",
+    type: "Archived Website",
+    url: "https://web.archive.org/web/20210414134021/https://www.directinvestdevelopment.com/studio",
+  },
+  {
+    date: "2023",
+    sortDate: "2023-01-01",
+    title: "Abebe St George Ventures LLC appears in entity research file",
+    description:
+      "The entity list includes Abebe St George Ventures LLC, later associated in the archive with St. George Crossing and Waynesboro property references.",
+    source: "Georgia entity research",
+    type: "Entity Record",
+    url: "/reports/mike-abebe",
+  },
+  {
+    date: "September 1, 2023",
+    sortDate: "2023-09-01",
+    title: "EPA grant 03D02024 awarded for Waynesboro sewer improvements",
+    description:
+      "EPA grant record 03D02024 identifies funding for City of Waynesboro sewer improvement work, including sewer line replacement and upsizing.",
+    source: "EPA grant record",
+    type: "Federal Grant",
+    url: "/reports/epa-sewer-grant",
+  },
+  {
+    date: "March 27, 2024",
+    sortDate: "2024-03-27",
+    title: "DDA meeting minutes captured",
+    description:
+      "Meeting-minutes material was captured for the archive as part of the municipal-document record around Waynesboro development activity.",
+    source: "Meeting minutes PDF",
+    type: "Municipal Document",
+    url: "/docs/meeting-minutes/DOOR March 27th, 2024, 2PM.doc.pdf",
+  },
+  {
+    date: "April 15, 2024",
+    sortDate: "2024-04-15",
+    title: "Planning committee PDF captured",
+    description:
+      "A Planning Committee PDF from Waynesboro was added to the archive for review alongside the St. George Crossing municipal record.",
+    source: "Planning Committee PDF",
+    type: "Municipal Document",
+    url: "/docs/meeting-minutes/Planning Committee April 15 2024.pdf",
+  },
+  {
+    date: "2024",
+    sortDate: "2024-07-01",
+    title: "Waynesboro qPublic property capture added",
+    description:
+      "The qPublic capture lists Abebe St George Ventures LLC property references in Waynesboro, including parcels on 6th Street W, Liberty Street, and Shadrack Street.",
+    source: "qPublic screenshot",
+    type: "Property Record",
+    url: "/images/properties/abebe-st-george-properties-waynesboro-qpublic.png",
+  },
+  {
+    date: "2024",
+    sortDate: "2024-08-01",
+    title: "Elysian Development Group advisor material captured",
+    description:
+      "Captured Elysian advisor material shows Mike Abebe and Carlton Brown in advisor-page context, creating a bridge from the Direct Invest thread.",
+    source: "Elysian Development Group capture",
+    type: "Website Capture",
+    url: "/images/entities/elysian-development-advisors-page.png",
+  },
+  {
+    date: "2024",
+    sortDate: "2024-09-01",
+    title: "St. George Crossing Elysian project-page material captured",
+    description:
+      "The archive includes Elysian project-page material showing St. George Crossing as a Waynesboro project with related visuals.",
+    source: "Elysian project-page capture",
+    type: "Project Material",
+    url: "/images/projects/st-george-crossing-elysian-projects-page.png",
+  },
+  {
+    date: "February 3, 2026",
+    sortDate: "2026-02-03",
+    title: "City of Waynesboro support letter captured",
+    description:
+      "A public letter from the City of Waynesboro connected to St. George Crossing was added to the source archive.",
+    source: "City support letter",
+    type: "Municipal Document",
+    url: "/docs/letters/2026-02-03-city-of-waynesboro-support-letter-st-george-crossings.png",
+  },
+  {
+    date: "April 3, 2025",
+    sortDate: "2025-04-03",
+    title: "WSB-TV covers Mike Abebe's Southwest Atlanta BeltLine-area proposal",
+    description:
+      "WSB-TV reported on Mike Abebe's proposed 25-acre Sylvan Road/BeltLine-area development in Southwest Atlanta, adding Atlanta context to the Waynesboro research file.",
+    source: "WSB-TV",
+    type: "Atlanta Reporting",
+    url: "https://www.wsbtv.com/news/local/atlanta/developer-hopes-create-city-within-city-along-atlantas-beltline/GZLWCGFOZFC2DCQFPD4RZSH5SM/",
+  },
+  {
+    date: "2026",
+    sortDate: "2026-01-15",
+    title: "Abebe Ventures website reviewed",
+    description:
+      "The public Abebe Ventures website lists 249 Milton Ave SE, Atlanta-area development projects, and St. George Crossing among its project links.",
+    source: "Abebe Ventures website",
+    type: "Website Review",
+    url: "https://www.abebe.com/",
+  },
+  {
+    date: "March 2026",
+    sortDate: "2026-03-01",
+    title: "St. George Crossing renderings and site visuals captured",
+    description:
+      "Project renderings, an entrance rendering, and a site plan were added to the archive for visual review alongside the reports.",
+    source: "Project image archive",
+    type: "Project Material",
+    url: "/documents#project-images",
+  },
+  {
+    date: "2026",
+    sortDate: "2026-03-02",
+    title: "St. George Crossing website reviewed",
+    description:
+      "The public St. George Crossing website was added as a source for project-facing information and imagery.",
+    source: "St. George Crossing website",
+    type: "Project Website",
+    url: "https://www.sgcrossing.com/",
+  },
+  {
+    date: "Date TBD",
+    sortDate: "9999-01-01",
+    title: "EPA sewer project sign photo added",
+    description:
+      "A local photo of the EPA sewer project sign was added to the archive for review alongside grant records and resident concerns about sewer-project impacts.",
+    source: "Local field photo",
+    type: "Field Photo",
+    url: "/reports/epa-sewer-grant",
+  },
+];
+
+const articleItems = articles.map((item) => ({
+  date: item.publishedDate,
+  sortDate: Number.isNaN(Date.parse(item.publishedDate))
+    ? "9999-01-01"
+    : new Date(item.publishedDate).toISOString(),
+  title: item.title,
+  description: item.topic,
+  source: item.author ? `${item.source} / ${item.author}` : item.source,
+  type: "Local Reporting",
+  url: item.url,
+}));
+
+const timelineItems = [...researchItems, ...articleItems].sort(
+  (a, b) => getDateTime(a.sortDate) - getDateTime(b.sortDate)
+);
 ---
 
 <BaseLayout title="Timeline | Who Is Abebe?">
-  <main class="page">
-    <h1>Timeline</h1>
-    <p>A chronological view of filings, purchases, articles, public claims, and development milestones.</p>
 
-    <section>
-      {timeline.map((item) => (
-        <article class="event">
-          <p>{item.date || "Date unknown"}</p>
-          <h2>{item.title}</h2>
-          {item.description && <span>{item.description}</span>}
-        </article>
-      ))}
-    </section>
+  <Header>
+    <Fragment slot="title">Timeline</Fragment>
+
+    <Fragment slot="subtitle">
+      A working chronology of reporting, entity records, archived websites,
+      public documents, property records, and project material.
+    </Fragment>
+  </Header>
+
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p class="lede">
+        This timeline is a working reconstruction. It combines dated articles
+        with captured records and research milestones so the broader sequence
+        can be reviewed, corrected, and expanded.
+      </p>
+
+      <div class="notice-box">
+        <strong>Timeline note:</strong>
+        Some entries use exact publication or capture dates. Others use a year
+        or working date when the archive has source material but still needs a
+        stronger timestamp.
+      </div>
+
+      <div class="timeline-list">
+        {timelineItems.map((item) => (
+          <div class="timeline-item">
+            <span class="timeline-date">{item.date || "Date TBD"}</span>
+            <span class="timeline-type">{item.type}</span>
+
+            <h2>
+              <a href={item.url} target="_blank">
+                {item.title}
+              </a>
+            </h2>
+
+            <p>{item.description}</p>
+
+            <small>{item.source}</small>
+          </div>
+        ))}
+      </div>
+
+    </article>
   </main>
+
+  <Footer />
+
 </BaseLayout>
 
 <style>
-  .page { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
-  .event { border-left: 3px solid #111; padding: 0 0 1.5rem 1rem; margin-bottom: 1rem; }
-  .event p { opacity: .7; margin: 0 0 .4rem; }
-  .event h2 { margin: 0 0 .4rem; }
+  .timeline-type {
+    display: inline-block;
+    margin-left: 10px;
+    color: #555;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .timeline-item h2 {
+    margin-top: 10px;
+  }
 </style>

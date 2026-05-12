@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# private research notes and source material not intended for the public site
+research-private/
+
 # macOS-specific files
 .DS_Store
 

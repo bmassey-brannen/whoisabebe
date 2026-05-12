@@ -1,22 +1,89 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
 ---
 
 <BaseLayout title="Reports | Who Is Abebe?">
-  <main class="page">
-    <h1>Reports</h1>
-    <p>Longform investigative writeups built from the public record archive.</p>
 
-    <article class="card">
-      <p>Featured Report</p>
-      <h2><a href="/reports/st-george-crossing/">St. George Crossing</a></h2>
-      <span>The developing master report for the 1200+ acre project and connected entities.</span>
+  <Header>
+    <Fragment slot="title">Reports</Fragment>
+
+    <Fragment slot="subtitle">
+      Longform public records reviews and development research.
+    </Fragment>
+  </Header>
+
+  <main class="article-wrap">
+    <article class="article-body">
+
+      <p class="lede">
+        Reports collect the archive into focused research files. Each page
+        separates verified records, observations, images, tables, and open questions.
+      </p>
+
+      <div class="section-grid">
+
+        <a class="section-card feature-card" href="/reports/st-george-crossing">
+          <span>Research File No. 001</span>
+          <h3>St. George Crossing</h3>
+          <p>
+            A structured review of public records, project materials,
+            municipal documents, renderings, local reporting, and related entities.
+          </p>
+        </a>
+
+        <a class="section-card" href="/reports/mike-abebe">
+          <span>Research File No. 002</span>
+          <h3>Mike Abebe</h3>
+          <p>
+            A public records profile connecting images, 249 Milton Ave SE,
+            related LLCs, and Waynesboro property references.
+          </p>
+        </a>
+
+        <a class="section-card" href="/reports/direct-invest-group">
+          <span>Research File No. 003</span>
+          <h3>Direct Invest Group</h3>
+          <p>
+            A source-code and Wayback Machine trail connecting archived Direct Invest
+            material to Mike Abebe, Carlton Brown, and related development records.
+          </p>
+        </a>
+
+        <a class="section-card" href="/reports/elysian-development-group">
+          <span>Research File No. 004</span>
+          <h3>Elysian Development Group</h3>
+          <p>
+            A captured web-material review focused on Elysian advisor references,
+            Carlton Brown, Mike Abebe, and St. George Crossing project material.
+          </p>
+        </a>
+
+        <a class="section-card" href="/reports/ensley-rising">
+          <span>Research File No. 005</span>
+          <h3>Ensley Rising</h3>
+          <p>
+            A public-records review of archived Ensley Rising material,
+            Ramsay-McCormack reporting, Carlton Brown, Gizman Abbas,
+            and Abebe Blackbelt Ventures.
+          </p>
+        </a>
+
+        <a class="section-card" href="/reports/epa-sewer-grant">
+          <span>Research File No. 006</span>
+          <h3>EPA Sewer Grant</h3>
+          <p>
+            A focused review of EPA grant 03D02024, Waynesboro sewer work,
+            project signage, and resident concerns reported locally.
+          </p>
+        </a>
+
+      </div>
+
     </article>
   </main>
-</BaseLayout>
 
-<style>
-  .page { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
-  .card { border: 1px solid #ddd; border-radius: 14px; padding: 1.5rem; }
-  .card p { opacity: .7; margin-top: 0; }
-</style>
+  <Footer />
+
+</BaseLayout>

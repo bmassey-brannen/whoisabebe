@@ -1,73 +1,678 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import articles from "../../data/articles.json";
+import documents from "../../data/documents.json";
+
+const projectDocs = documents.filter((doc) =>
+  doc.relatedEntities?.some((entity) =>
+    entity.toLowerCase().includes("st. george") ||
+    entity.toLowerCase().includes("st george") ||
+    entity.toLowerCase().includes("waynesboro") ||
+    entity.toLowerCase().includes("abebe")
+  )
+);
+
+const projectArticles = articles.filter((article) =>
+  article.topic?.toLowerCase().includes("st. george") ||
+  article.topic?.toLowerCase().includes("waynesboro") ||
+  article.topic?.toLowerCase().includes("development") ||
+  article.topic?.toLowerCase().includes("infrastructure") ||
+  article.topic?.toLowerCase().includes("sewer") ||
+  article.topic?.toLowerCase().includes("grant") ||
+  article.title?.toLowerCase().includes("st. george") ||
+  article.title?.toLowerCase().includes("waynesboro") ||
+  article.title?.toLowerCase().includes("6th street") ||
+  article.title?.toLowerCase().includes("development") ||
+  article.title?.toLowerCase().includes("ground") ||
+  article.title?.toLowerCase().includes("sewer") ||
+  article.title?.toLowerCase().includes("grant")
+).sort((a, b) => Date.parse(a.publishedDate) - Date.parse(b.publishedDate));
+
+const relatedEntities = [
+  {
+    name: "Abebe St George Ventures LLC",
+    state: "GA",
+    status: "Active/Owes Current Year AR",
+    role: "Entity tied to St. George Crossing and Waynesboro property records.",
+  },
+  {
+    name: "Abebe Ventures LLC",
+    state: "GA",
+    status: "Active/Owes Current Year AR",
+    role: "Abebe development entity connected to public project materials.",
+  },
+  {
+    name: "ABEBE & COMPANY, LLC",
+    state: "GA",
+    status: "Active/Owes Current Year AR",
+    role: "Abebe-related Georgia entity sharing the 249 Milton Ave SE address.",
+  },
+  {
+    name: "Elysian Development Group",
+    state: "GA",
+    status: "Website/advisor material captured",
+    role: "Captured material shows St. George Crossing as a Waynesboro project with renderings.",
+  },
+  {
+    name: "Direct Invest Development",
+    state: "Unknown",
+    status: "Wayback material captured",
+    role: "Archived partner material links Mike Abebe, Carlton Brown, and Gizman Abbas.",
+  },
+];
+
+const downtownProperties = [
+  {
+    parcelId: "065 027",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "6th Street W",
+    description: "187.64-acre St. George Crossing project-area parcel",
+    qpublicUrl: "https://qpublic.schneidercorp.com/Application.aspx?AppID=640&LayerID=11304&PageTypeID=4&PageID=4639&Q=1351500327&KeyValue=065++++027",
+    imagePath: "/images/properties/waynesboro-property-footprint.png",
+  },
+  {
+    parcelId: "W07 083",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "540 Liberty Street",
+    description: "6th - Liberty Streets & rear lot",
+    qpublicUrl: "https://qpublic.schneidercorp.com/Application.aspx?AppID=640&LayerID=11304&PageTypeID=4&PageID=4639&Q=1351500327&KeyValue=W07++++083",
+    imagePath: "/images/properties/540 liberty st.png",
+  },
+  {
+    parcelId: "W07 084A",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "543 Liberty Street",
+    description: '543 Liberty St / building "Jones Bldg"',
+    qpublicUrl: "https://qpublic.schneidercorp.com/Application.aspx?AppID=640&LayerID=11304&PageTypeID=4&PageID=4639&Q=1351500327&KeyValue=W07++++084A",
+    imagePath: "/images/properties/543-s-liberty.png",
+  },
+  {
+    parcelId: "W07 085A",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "540 Shadrack Street",
+    description: "Vacant lot behind 543 Liberty Street",
+    qpublicUrl: "https://qpublic.schneidercorp.com/Application.aspx?AppID=640&LayerID=11304&PageTypeID=4&PageID=4639&Q=1351500327&KeyValue=W07++++085A",
+    imagePath: "/images/properties/zoomed in map.png",
+  },
+  {
+    parcelId: "W07 088A",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "531 Liberty Street",
+    description: ".35 AC / building",
+    qpublicUrl: "https://qpublic.schneidercorp.com/Application.aspx?AppID=640&LayerID=11304&PageTypeID=4&PageID=4639&Q=1351500327&KeyValue=W07++++088A",
+    imagePath: "/images/properties/531 liberty st.png",
+  },
+];
 ---
 
 <BaseLayout title="St. George Crossing | Who Is Abebe?">
-  <header class="hero">
-    <nav class="top-nav">
-      <a class="logo" href="/">
-        <img src="/logos/WIA.png" alt="WiA Logo" class="logo-icon" />
-        <span>WHO IS ABEBE?</span>
-      </a>
 
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/timeline">Timeline</a>
-        <a href="/documents">Documents</a>
-      </div>
-    </nav>
+  <Header>
+    <Fragment slot="title">St. George Crossing</Fragment>
 
-    <div class="hero-content">
-      <h1>The LLC Network Behind St. George Crossing</h1>
-      <div class="red-line"></div>
-      <p>Research File No. 001</p>
-    </div>
-  </header>
+    <Fragment slot="subtitle">
+      A public records review of a proposed Waynesboro development,
+      related entities, project materials, and municipal documents.
+    </Fragment>
+  </Header>
 
   <main class="article-wrap">
-    <article class="article-body">
+    <article class="article-body report-page">
+
+      <p class="lede">
+        St. George Crossing has appeared in local reporting, city documents,
+        project renderings, business records, property references, and public
+        development materials. This page organizes those materials into one
+        working research file.
+      </p>
+
+      <div class="notice-box">
+        <strong>Scope:</strong>
+        This report summarizes public records and public-facing materials.
+        It does not claim private knowledge of financing, ownership intent,
+        or internal decision-making.
+      </div>
+
+      <h2>Core Questions</h2>
+
       <ul class="thesis-list">
-        <li>Abebe St George Ventures LLC is tied to multiple properties in Waynesboro.</li>
-        <li>Several related Abebe entities share the same Atlanta address.</li>
-        <li>Public records and local reporting point to a larger development concept called St. George Crossing.</li>
+        <li>What public entities, properties, and documents are connected to St. George Crossing?</li>
+        <li>How has the project been described across local reporting and public materials?</li>
+        <li>What public records connect the project to related LLCs and addresses?</li>
       </ul>
 
-      <h2>The Core Question</h2>
+      <h2>Compact Timeline</h2>
+
+      <ul class="compact-timeline">
+        <li><strong>March 29, 2023:</strong> True Citizen reports a proposed $300 million project tied to a 190-acre 6th Street property.</li>
+        <li><strong>March 27, 2024:</strong> DDA / DOOR meeting material places Mike Abebe / St. George Crossing into the municipal record, including the local introduction of the project.</li>
+        <li><strong>April 15, 2024:</strong> Planning Committee material shows site-plan discussion roughly three weeks after the March introduction.</li>
+        <li><strong>December 10, 2024:</strong> True Citizen reports a $2.5 million infrastructure grant tied to housing units in St. George Crossing.</li>
+        <li><strong>June 11, 2025:</strong> True Citizen reports resident concerns about the Waynesboro sewer project, including a reported home flooding concern.</li>
+        <li><strong>February 3, 2026:</strong> City support letter frames the project with housing and affordability language.</li>
+        <li><strong>March 17, 2026:</strong> Local reporting and event imagery document the public groundbreaking.</li>
+      </ul>
 
       <p>
-        Who is behind St. George Crossing, and how do the connected entities,
-        addresses, and property records fit together?
+        See the <a href="/timeline">full timeline</a> for related articles,
+        municipal records, archived websites, EPA material, and project-source notes.
+      </p>
+
+      <h2>Public Promise and Open Questions</h2>
+
+      <p>
+        The public St. George Crossing website presents the project as a
+        mixed-use Waynesboro community guided by New Urbanism, with
+        <a href="https://www.sgcrossing.com/" target="_blank">project language</a>
+        describing "walkable streets, inviting front porches" and green spaces.
+        That community-facing pitch is important because it is the promise being
+        made to the city and to nearby residents.
+      </p>
+
+      <p>
+        The site's "Life at St. George Crossing" section also explicitly sells
+        <strong>New Urbanism</strong>: walkable streets, porches, tree-lined
+        avenues, green space, and community-first living. Those are familiar
+        planning ideals, but they create a fair public question for Waynesboro:
+        whether the built project will actually deliver those civic benefits, or
+        whether the language is being used mainly to package a private real
+        estate venture in community-minded terms.
+      </p>
+
+      <p>
+        One marketing card also describes the location as "a short drive to the
+        Augusta Masters." That is a revealing piece of positioning. Waynesboro is
+        roughly thirty minutes from Augusta, but the Masters reference speaks more
+        to regional branding and outside audience appeal than to the everyday
+        needs of residents living in the heart of Waynesboro.
+      </p>
+
+      <p>
+        The open public-records question is who, exactly, is behind that promise.
+        For St. George Crossing specifically, the records collected so far point
+        to Georgia LLCs, project websites, municipal documents, local reporting,
+        and development partners whose roles are not always clearly explained in
+        the public-facing materials. That is separate from the Ensley Rising and
+        Alabama records in this archive, which are included as Mike Abebe
+        background leads, not as confirmed St. George Crossing connections.
+      </p>
+
+      <p>
+        This distinction matters because Abebe is unusually difficult to document
+        through ordinary public-facing sources. Some useful context has come from
+        archived websites, source-code references, and older captures where names
+        or images appeared before later versions changed or removed them. The
+        absence of easy-to-find current material is part of why this report keeps
+        the project record separate from the broader Abebe research file.
+      </p>
+
+      <div class="notice-box">
+        <strong>Question for the record:</strong>
+        When a project is marketed as a connected local community, what should
+        Waynesboro residents be able to know about the shell entities,
+        partners, financing, property control, and outside development interests
+        operating behind it?
+      </div>
+
+      <h2>Downtown Property Conditions</h2>
+
+      <p>
+        A separate concern is the relationship between the large St. George
+        Crossing project-area parcel and central Waynesboro properties listed
+        in qPublic under Abebe St George Ventures LLC. These records include the
+        6th Street project tract plus Liberty Street and Shadrack Street parcels
+        in the downtown street grid. The archive currently flags the downtown
+        parcels because local review and captured imagery indicate several
+        appear abandoned, vacant, or dormant after acquisition.
+      </p>
+
+      <div class="notice-box">
+        <strong>Records distinction:</strong>
+        The parcel records identify Abebe St George Ventures LLC as the listed
+        owner. This report treats the downtown-property issue as an
+        Abebe-linked entity record and a St. George Crossing accountability
+        question, while leaving exact legal ownership and property condition to
+        qPublic records, dated images, and any city code-enforcement material.
+      </div>
+
+      <figure class="report-figure downtown-map-figure">
+        <img
+          src="/images/properties/waynesboro-property-footprint.png"
+          alt="qPublic map showing St. George Crossing footprint and downtown Waynesboro parcels"
+        />
+        <figcaption>
+          qPublic map screenshot showing the large St. George Crossing
+          project-area footprint and highlighted downtown Waynesboro parcels.
+        </figcaption>
+      </figure>
+
+      <figure class="report-figure downtown-map-figure">
+        <img
+          src="/images/properties/zoomed in map.png"
+          alt="Zoomed qPublic map showing downtown Waynesboro parcels"
+        />
+        <figcaption>
+          Zoomed qPublic map screenshot showing highlighted downtown Waynesboro
+          parcels near Liberty Street, 6th Street, Myrick Street, and Shadrack Street.
+        </figcaption>
+      </figure>
+
+      <div class="property-grid">
+        {downtownProperties.map((property) => (
+          <a class="property-card" href={property.qpublicUrl} target="_blank" rel="noreferrer">
+            <img src={property.imagePath} alt={`${property.address} qPublic capture`} />
+            <div>
+              <span>{property.parcelId}</span>
+              <strong>{property.address}</strong>
+              <small>{property.owner}</small>
+              <p>{property.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="wide-table compact-property-table">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Parcel</th>
+              <th>Owner</th>
+              <th>Address</th>
+              <th>qPublic Description</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {downtownProperties.map((property) => (
+              <tr>
+                <td>{property.parcelId}</td>
+                <td>{property.owner}</td>
+                <td>{property.address}</td>
+                <td>{property.description}</td>
+                <td>
+                  <a href={property.qpublicUrl} target="_blank">qPublic record</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Municipal Timeline and Public Support</h2>
+
+      <p>
+        The municipal documents collected so far suggest the St. George Crossing
+        proposal moved quickly through public-facing discussion in spring 2024:
+        a March 27 meeting-minutes record, followed by planning-committee material
+        dated April 15 showing site-plan material roughly three weeks later.
+      </p>
+
+      <div class="document-list">
+        <a class="document-row" href="https://www.sgcrossing.com/" target="_blank">
+          <span>Project Website</span>
+          <strong>St. George Crossing</strong>
+          <p>Public-facing website for the St. George Crossing project.</p>
+        </a>
+
+        <a
+          class="document-row"
+          href="/docs/meeting-minutes/DOOR March 27th, 2024, 2PM.doc.pdf"
+          target="_blank"
+        >
+          <span>March 27, 2024</span>
+          <strong>Early municipal meeting record</strong>
+          <p>
+            Used to document the 2024 introduction of Mike Abebe / St. George
+            Crossing into the municipal record.
+          </p>
+        </a>
+
+        <a
+          class="document-row"
+          href="/docs/meeting-minutes/Planning Committee April 15 2024.pdf"
+          target="_blank"
+        >
+          <span>April 15, 2024</span>
+          <strong>Planning committee material</strong>
+          <p>
+            Used to show how quickly site-plan material appeared after the March
+            meeting record.
+          </p>
+        </a>
+
+        <a
+          class="document-row"
+          href="/docs/letters/2026-02-03-city-of-waynesboro-support-letter-st-george-crossings.png"
+          target="_blank"
+        >
+          <span>February 3, 2026</span>
+          <strong>City support letter</strong>
+          <p>
+            The mayor's support letter uses housing and affordability language
+            when describing the public value of the project.
+          </p>
+        </a>
+
+        <a
+          class="document-row"
+          href="/reports/epa-sewer-grant"
+        >
+          <span>Related Report</span>
+          <strong>EPA Sewer Grant</strong>
+          <p>
+            Separate research file for EPA grant 03D02024, sewer project signage,
+            and resident concerns.
+          </p>
+        </a>
+
+        {projectDocs.slice(0, 8).map((doc) => (
+          <a class="document-row" href={doc.filePath} target="_blank">
+            <span>{doc.category}</span>
+            <strong>{doc.title}</strong>
+            <p>{doc.summary}</p>
+          </a>
+        ))}
+      </div>
+
+      <figure class="report-figure">
+        <img
+          src="/docs/letters/2026-02-03-city-of-waynesboro-support-letter-st-george-crossings.png"
+          alt="City of Waynesboro support letter for St. George Crossing"
+        />
+        <figcaption>City support letter for St. George Crossing, dated February 3, 2026.</figcaption>
+      </figure>
+
+      <h2>Project Visuals</h2>
+
+      <div class="notice-box">
+        <strong>Elysian Development Group connection:</strong>
+        The archive includes Elysian Development Group material showing St. George
+        Crossing as a Waynesboro project with renderings. Elysian is not clearly
+        explained in the other public-facing St. George materials collected so far.
+        <a href="/reports/elysian-development-group">Review the Elysian report</a>.
+      </div>
+
+      <figure class="report-figure">
+        <img
+          src="/images/projects/st-george-crossing-rendering-main.png"
+          alt="St. George Crossing project rendering"
+        />
+        <figcaption>Public-facing rendering associated with St. George Crossing materials.</figcaption>
+      </figure>
+
+      <figure class="report-figure">
+        <img
+          src="/images/maps/st george crossing render.jpg"
+          alt="St. George Crossing website rendering"
+        />
+        <figcaption>Rendering captured from the public St. George Crossing website.</figcaption>
+      </figure>
+
+      <figure class="report-figure">
+        <img
+          src="/images/properties/waynesboro-property-footprint.png"
+          alt="Waynesboro property footprint map"
+        />
+        <figcaption>qPublic map screenshot showing the apparent project-area property footprint.</figcaption>
+      </figure>
+
+      <h2>Groundbreaking Event</h2>
+
+      <p>
+        Local reporting places the St. George Crossing groundbreaking on March 17,
+        2026. The archive includes event imagery showing Mayor James "Chick" Jones
+        and Mike Abebe in the public groundbreaking context.
       </p>
 
       <blockquote class="report-quote">
-        "At St. George Crossing, custom homes will not just be built, they'll be thoughtfully crafted..."
+        <p>
+          "We have to succeed here."
+        </p>
+        <cite>
+          Mike Abebe, quoted in
+          <a href="https://www.thetruecitizen.com/articles/developer-breaks-ground-on-new-neighborhood/" target="_blank">
+            The True Citizen
+          </a>
+        </cite>
       </blockquote>
 
-      <h2>Known Entities</h2>
+      <p>
+        That phrase matters because it frames the project as more than a private
+        development bet. In the same public article, Abebe described the team's
+        responsibility to deliver a high-quality development and asked the city
+        to keep helping and guiding the work. The statement raises a direct
+        follow-up for this archive: who shares that responsibility, and which
+        entity or entities are accountable if the project does not succeed here?
+      </p>
+
+      <div class="figure-grid">
+        <figure class="report-figure">
+          <img
+            src="/images/entities/mayor-james-jones-mike-abebe-event-photo.png"
+            alt="Mayor James Jones and Mike Abebe at St. George Crossing event"
+          />
+          <figcaption>Event image from the St. George Crossing public-facing record.</figcaption>
+        </figure>
+
+        <figure class="report-figure">
+          <img
+            src="/images/entities/Grounbreaking-picutre.png"
+            alt="Labeled St. George Crossing groundbreaking photo"
+          />
+          <figcaption>Labeled photo of attendees from the St. George Crossing groundbreaking materials.</figcaption>
+        </figure>
+      </div>
+
+      <h2>Related Entity Records</h2>
 
       <table class="report-table">
         <thead>
           <tr>
             <th>Entity</th>
-            <th>Address</th>
+            <th>State</th>
+            <th>Status</th>
             <th>Connection</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Abebe St George Ventures LLC</td>
-            <td>249 Milton Ave SE, Atlanta, GA</td>
-            <td>Waynesboro / St. George Crossing</td>
-          </tr>
-
-          <tr>
-            <td>Abebe Ventures LLC</td>
-            <td>249 Milton Ave SE, Atlanta, GA</td>
-            <td>Related Abebe entity</td>
-          </tr>
+          {relatedEntities.map((entity) => (
+            <tr>
+              <td>{entity.name}</td>
+              <td>{entity.state}</td>
+              <td>{entity.status}</td>
+              <td>{entity.role}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
+
+      <h2>Local Reporting</h2>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Article</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {projectArticles.map((article) => (
+            <tr>
+              <td>{article.publishedDate}</td>
+              <td>
+                <a href={article.url} target="_blank">
+                  {article.title}
+                </a>
+              </td>
+              <td>{article.source}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Working Notes</h2>
+
+      <div class="fact-grid">
+        <div class="fact-card">
+          <span>Verified</span>
+          <p>
+            Public records and documents reference St. George Crossing,
+            associated entities, property materials, and municipal communications.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Observation</span>
+          <p>
+            The project appears across multiple source types:
+            local reporting, renderings, meeting minutes, entity records,
+            and city correspondence.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Open Question</span>
+          <p>
+            The full relationship between the development vision, public infrastructure,
+            private entities, and project financing requires further documentation.
+          </p>
+        </div>
+      </div>
+
     </article>
   </main>
+
+  <Footer />
+
 </BaseLayout>
+
+<style is:global>
+  .figure-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 36px 0 54px;
+  }
+
+  .figure-grid .report-figure {
+    margin: 0;
+  }
+
+  .figure-grid img {
+    width: 100%;
+    height: 360px;
+    object-fit: contain;
+    background: #f6f6f6;
+  }
+
+  .report-page > .report-figure img {
+    width: 100%;
+  }
+
+  .downtown-map-figure {
+    margin-top: 34px;
+  }
+
+  .report-page .property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 30px 0 36px;
+  }
+
+  .report-page .property-card {
+    border: 1px solid var(--border);
+    color: inherit;
+    background: #fff;
+    display: block;
+    padding: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .report-page .property-card:hover {
+    border-color: #999;
+    transform: translateY(-2px);
+  }
+
+  .report-page .property-card img {
+    background: #f6f6f6;
+    border: 1px solid var(--border);
+    display: block;
+    height: 185px;
+    margin-bottom: 14px;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .report-page .property-card span {
+    color: var(--red);
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .report-page .property-card strong {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .report-page .property-card small {
+    color: #555;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .report-page .property-card p {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .report-page .compact-property-table {
+    margin-bottom: 54px;
+  }
+
+  .compact-timeline {
+    border-left: 4px solid var(--red);
+    list-style: none;
+    margin: 28px 0;
+    padding-left: 24px;
+  }
+
+  .compact-timeline li {
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .figure-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .report-page .property-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .figure-grid img {
+      height: auto;
+    }
+  }
+</style>

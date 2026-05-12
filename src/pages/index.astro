@@ -4,14 +4,14 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 import articles from "../data/articles.json";
-import entities from "../data/entities.json";
-import documents from "../data/documents.json";
-import timeline from "../data/timeline.json";
 
-const latestArticles = articles.slice(0, 6);
-const featuredEntities = entities.slice(0, 6);
-const latestDocs = documents.slice(0, 6);
-const timelineItems = timeline.slice(0, 5);
+const getDateTime = (date) => {
+  const parsed = Date.parse(date);
+  return Number.isNaN(parsed) ? Number.MAX_SAFE_INTEGER : parsed;
+};
+
+const reportingArticles = articles
+  .sort((a, b) => getDateTime(a.publishedDate) - getDateTime(b.publishedDate));
 ---
 
 <BaseLayout title="Who Is Abebe?">
@@ -22,213 +22,129 @@ const timelineItems = timeline.slice(0, 5);
     </Fragment>
 
     <Fragment slot="subtitle">
-      Local development. Public records. Open questions.
+      Public records. Local development. Open questions.
     </Fragment>
   </Header>
 
-  <section class="subscribe-bar">
-
-    <span>
-      FOLLOW THE PUBLIC RECORDS TRAIL
-    </span>
-
-    <form>
-      <input type="email" placeholder="email address" />
-      <button>Subscribe</button>
-    </form>
-
-  </section>
-
   <main class="article-wrap">
-
     <article class="article-body">
 
-      <h2>The Investigation</h2>
-
-      <p>
-        Tracking properties, LLCs, public claims, development proposals,
-        archived websites, renderings, filings, and relationships tied
-        to the St. George Crossing project and related entities.
+      <p class="lede">
+        This site organizes public records, meeting minutes, archived websites,
+        local reporting, project renderings, and property documents connected
+        to the St. George Crossing development in Waynesboro, Georgia.
       </p>
 
-      <blockquote class="report-quote">
-        "At St. George Crossing, custom homes will not just be built,
-        they'll be thoughtfully crafted to reflect both the personal vision
-        and timeless character of Waynesboro."
-      </blockquote>
+      <div class="notice-box">
+        <strong>Methodology note:</strong>
+        This archive is built from public records, public websites, local reporting,
+        archived webpages, and documents collected for review. Claims are separated
+        from observations wherever possible.
+      </div>
 
-      <h2>Explore</h2>
+      <h2>What This Archive Tracks</h2>
+
+      <p>
+        Who Is Abebe? is a working public-records archive focused on the people,
+        companies, addresses, properties, websites, and municipal materials that
+        appear around St. George Crossing and related development activity.
+      </p>
+
+      <div class="fact-grid">
+        <div class="fact-card">
+          <span>Reports</span>
+          <p>
+            Focused research files on St. George Crossing, Mike Abebe, Direct Invest,
+            Elysian Development Group, and related records.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Evidence</span>
+          <p>
+            Screenshots, renderings, archived webpages, public letters, meeting
+            minutes, property captures, and source documents.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Questions</span>
+          <p>
+            A structured place to separate what is documented, what is observed,
+            and what still needs stronger source material.
+          </p>
+        </div>
+      </div>
+
+      <h2>Start Here</h2>
 
       <div class="section-grid">
 
-        <a class="section-card" href="/reports">
-          <span>Reports</span>
+        <a class="section-card feature-card" href="/reports">
+          <span>Research Files</span>
+          <h3>Reports</h3>
           <p>
-            Longform investigations and narrative reporting.
-          </p>
-        </a>
-
-        <a class="section-card" href="/entities">
-          <span>Entities</span>
-          <p>
-            LLCs, organizations, individuals, and connected groups.
+            Longform public records reviews, including St. George Crossing,
+            Mike Abebe, related entities, properties, and municipal documents.
           </p>
         </a>
 
         <a class="section-card" href="/documents">
-          <span>Documents</span>
+          <span>Evidence Archive</span>
+          <h3>Documents</h3>
           <p>
-            Public filings, PDFs, screenshots, records, and source materials.
-          </p>
-        </a>
-
-        <a class="section-card" href="/network">
-          <span>Network</span>
-          <p>
-            Relationship mapping between people, addresses, and ventures.
+            PDFs, screenshots, renderings, filings, meeting minutes,
+            public letters, and archived webpages.
           </p>
         </a>
 
         <a class="section-card" href="/timeline">
-          <span>Timeline</span>
+          <span>Chronology</span>
+          <h3>Timeline</h3>
           <p>
-            Chronological reconstruction of public activity.
+            A chronological reconstruction of articles, records,
+            filings, project announcements, and public documents.
           </p>
         </a>
 
       </div>
 
-      <h2>Latest Articles</h2>
+      <h2>Local and Development Reporting</h2>
 
       <table class="report-table">
-
         <thead>
           <tr>
             <th>Date</th>
-            <th>Title</th>
+            <th>Article</th>
             <th>Source</th>
+            <th>Author</th>
           </tr>
         </thead>
 
         <tbody>
-
-          {latestArticles.map((article) => (
-
+          {reportingArticles.map((article) => (
             <tr>
-
               <td>{article.publishedDate}</td>
-
               <td>
                 <a href={article.url} target="_blank">
                   {article.title}
                 </a>
               </td>
-
               <td>{article.source}</td>
-
+              <td>{article.author}</td>
             </tr>
-
           ))}
-
         </tbody>
-
       </table>
 
-      <h2>Featured Entities</h2>
+      <h2>Corrections</h2>
 
-      <table class="report-table">
-
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>State</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {featuredEntities.map((entity) => (
-
-            <tr>
-
-              <td>{entity.name}</td>
-              <td>{entity.state}</td>
-              <td>{entity.status}</td>
-
-            </tr>
-
-          ))}
-
-        </tbody>
-
-      </table>
-
-      <h2>Recent Documents</h2>
-
-      <table class="report-table">
-
-        <thead>
-          <tr>
-            <th>Document</th>
-            <th>Category</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {latestDocs.map((doc) => (
-
-            <tr>
-
-              <td>
-                <a href={doc.filePath} target="_blank">
-                  {doc.title}
-                </a>
-              </td>
-
-              <td>{doc.category}</td>
-              <td>{doc.type}</td>
-
-            </tr>
-
-          ))}
-
-        </tbody>
-
-      </table>
-
-      <h2>Timeline Highlights</h2>
-
-      <table class="report-table">
-
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Event</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {timelineItems.map((item) => (
-
-            <tr>
-
-              <td>{item.date}</td>
-              <td>{item.title || item.event}</td>
-
-            </tr>
-
-          ))}
-
-        </tbody>
-
-      </table>
+      <p>
+        If any document, date, name, or description appears incorrect,
+        corrections and additional source material are welcome.
+      </p>
 
     </article>
-
   </main>
 
   <Footer />

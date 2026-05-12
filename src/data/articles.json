@@ -1,33 +1,33 @@
 [
   {
-    "title": "Fireworks return",
-    "url": "https://www.thetruecitizen.com/articles/fireworks-return/",
+    "title": "FIREWORKS RETURN",
+    "url": "https://www.thetruecitizen.com/articles/fireworks-return",
     "publishedDate": "April 23, 2024",
     "source": "True Citizen",
-    "topic": "Public event coverage connected to downtown Waynesboro activity.",
-    "notes": "",
-    "author": "No Author Listed"
+    "topic": "Fundraiser for Mad Anthony’s Big Boom Fireworks Extravaganza takes place on Wednesday, July 3rd",
+    "notes": "Abebe Westside LLC $1000",
+    "author": "DON LIVELY"
   },
   {
     "title": "City gets $2.5 million infrastructure grant",
     "url": "https://www.thetruecitizen.com/articles/city-gets-2-5-million-infrastructure-grant/",
-    "publishedDate": "March 13, 2024",
+    "publishedDate": "December 10, 2024",
     "source": "True Citizen",
-    "topic": "Waynesboro infrastructure funding tied to long-term development planning.",
-    "notes": "",
-    "author": "No Author Listed"
+    "topic": "The City of Waynesboro has been awarded $2,496,190 in OneGeorgia funds to construct street, drainage, water, and sewer infrastructure that will allow for the construction of 51 new housing units in St. George Crossing.",
+    "notes": "The development is on a 190-acre tract just off West Sixth Street across from the Burke County Office Park. The first phase will allow for the construction of 27 single-family homes and 24 townhomes. Future phases will include single family homes at various price points.",
+    "author": "Roy F. Chalker Jr."
   },
   {
     "title": "Groundbreaking planned for new development",
     "url": "https://www.thetruecitizen.com/articles/groundbreaking-planned-for-new-development/",
     "publishedDate": "March 10, 2026",
     "source": "True Citizen",
-    "topic": "Groundbreaking scheduled for St. George Crossing development.",
-    "notes": "Developer Mike Abebe stated the project had been in planning for over five years.",
+    "topic": "A groundbreaking scheduled for March 17 marks the official start of construction at St. George Crossing.",
+    "notes": "Developer Mike Abebe stated the development had been in planning for over five years.",
     "author": "No Author Listed"
   },
   {
-    "title": "$300 million project proposed for 6th street property",
+    "title": "$300 million project proposed for 6th Street property",
     "url": "https://www.thetruecitizen.com/articles/300-million-project-proposed-for-6th-street-property/",
     "publishedDate": "March 29, 2023",
     "source": "True Citizen",
@@ -52,5 +52,23 @@
     "topic": "Groundbreaking ceremony held for St. George Crossing development.",
     "notes": "Article includes comments from Mike Abebe and Assistant City Manager Trinetta Skinner.",
     "author": "No Author Listed"
+  },
+  {
+    "title": "Inspired by Trilith, Atlanta developer makes big bet on rural Georgia",
+    "url": "https://atlanta.urbanize.city/post/waynesboro-st-george-crossing-inspired-trilith-atl-developer-big-bet-rural-georgia-first-look",
+    "publishedDate": "April 14, 2026",
+    "source": "Urbanize Atlanta",
+    "topic": "Urbanize Atlanta covered St. George Crossing as a Waynesboro project inspired by Trilith and Serenbe, with renderings and development details.",
+    "notes": "Article references Abebe Ventures, St. George Crossing, Waynesboro, project renderings, and Atlanta development context.",
+    "author": "Josh Green"
+  },
+  {
+    "title": "Waynesboro residents express concerns about sewer project",
+    "url": "https://www.thetruecitizen.com/articles/waynesboro-residents-express-concerns-about-sewer-project/",
+    "publishedDate": "June 11, 2025",
+    "source": "True Citizen",
+    "topic": "Residents raised concerns about a Waynesboro sewer project connected to local infrastructure work and EPA-funded sewer improvements.",
+    "notes": "Related to EPA grant 03D02024 and local EPA project sign photo in the archive.",
+    "author": "MARGARET ANNE BROGAN"
   }
 ]

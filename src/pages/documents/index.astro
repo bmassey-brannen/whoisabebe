@@ -1,29 +1,357 @@
 ---
+import { readdirSync, statSync } from "node:fs";
+import { basename, extname, join, relative } from "node:path";
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import documents from "../../data/documents.json";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const publicDir = join(process.cwd(), "public");
+const scanRoots = ["docs", "filings", "images"];
+const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+const pdfExtensions = new Set([".pdf"]);
+
+const categoryOrder = [
+  "People",
+  "Project Images",
+  "Property and Maps",
+  "Website Screenshots",
+  "Entity Records",
+  "Article Images",
+  "Source Documents and Letters",
+  "PDFs",
+  "Other Captures",
+];
+
+const peopleKeywords = [
+  "headshot",
+  "portrait",
+  "interview",
+  "mike-abebe",
+  "mayor",
+  "event-photo",
+];
+
+function walkFiles(dir) {
+  return readdirSync(dir).flatMap((entry) => {
+    const fullPath = join(dir, entry);
+    const stat = statSync(fullPath);
+
+    return stat.isDirectory() ? walkFiles(fullPath) : [fullPath];
+  });
+}
+
+function toPublicPath(filePath) {
+  return `/${relative(publicDir, filePath).replaceAll("\\", "/")}`;
+}
+
+function toTitle(filePath) {
+  const extension = extname(filePath);
+  return basename(filePath, extension)
+    .replaceAll("-", " ")
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function categorize(item) {
+  const lowerPath = item.publicPath.toLowerCase();
+  const lowerTitle = item.title.toLowerCase();
+
+  if (item.kind === "PDF") {
+    return "PDFs";
+  }
+
+  if (peopleKeywords.some((keyword) => lowerPath.includes(keyword) || lowerTitle.includes(keyword))) {
+    return "People";
+  }
+
+  if (lowerPath.startsWith("/images/projects/")) {
+    return "Project Images";
+  }
+
+  if (lowerPath.startsWith("/images/properties/") || lowerPath.startsWith("/images/maps/")) {
+    return "Property and Maps";
+  }
+
+  if (lowerPath.startsWith("/images/websites/") || lowerPath.startsWith("/images/archived-sites/")) {
+    return "Website Screenshots";
+  }
+
+  if (lowerPath.startsWith("/images/entities/")) {
+    return "Entity Records";
+  }
+
+  if (lowerPath.startsWith("/images/articles/")) {
+    return "Article Images";
+  }
+
+  if (lowerPath.startsWith("/docs/")) {
+    return "Source Documents and Letters";
+  }
+
+  return "Other Captures";
+}
+
+const captures = scanRoots
+  .flatMap((root) => walkFiles(join(publicDir, root)))
+  .map((filePath) => {
+    const extension = extname(filePath).toLowerCase();
+    const publicPath = toPublicPath(filePath);
+    const kind = imageExtensions.has(extension) ? "Image" : pdfExtensions.has(extension) ? "PDF" : "File";
+
+    return {
+      publicPath,
+      extension,
+      kind,
+      title: toTitle(filePath),
+    };
+  })
+  .filter((item) => item.kind === "Image" || item.kind === "PDF")
+  .map((item) => ({
+    ...item,
+    category: categorize(item),
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const groupedCaptures = categoryOrder
+  .map((category) => ({
+    category,
+    items: captures.filter((item) => item.category === category),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const imageCount = captures.filter((item) => item.kind === "Image").length;
+const pdfCount = captures.filter((item) => item.kind === "PDF").length;
 ---
 
 <BaseLayout title="Documents | Who Is Abebe?">
-  <main class="page">
-    <h1>Document Archive</h1>
-    <p>Primary documents, screenshots, PDFs, public records, and supporting evidence.</p>
 
-    <section class="grid">
-      {documents.map((item) => (
-        <article class="card">
-          <p>{item.date || "Date unknown"}</p>
-          <h2><a href={item.url || item.file || "#"}>{item.title}</a></h2>
-          {item.type && <span>{item.type}</span>}
-          {item.description && <p>{item.description}</p>}
-        </article>
+  <Header>
+    <Fragment slot="title">Documents</Fragment>
+
+    <Fragment slot="subtitle">
+      Captured images, screenshots, PDFs, public records, and archived source material.
+    </Fragment>
+  </Header>
+
+  <main class="article-wrap document-review-wrap">
+    <article class="article-body document-review">
+
+      <p class="lede">
+        This page collects the source captures currently stored in the archive.
+        Images open at full size for review, and PDFs open directly in the browser.
+      </p>
+
+      <div class="archive-summary" aria-label="Document archive summary">
+        <div>
+          <strong>{imageCount}</strong>
+          <span>Images</span>
+        </div>
+
+        <div>
+          <strong>{pdfCount}</strong>
+          <span>PDFs</span>
+        </div>
+
+        <div>
+          <strong>{captures.length}</strong>
+          <span>Total Files</span>
+        </div>
+      </div>
+
+      <nav class="archive-jump-links" aria-label="Document categories">
+        {groupedCaptures.map((group) => (
+          <a href={`#${group.category.toLowerCase().replaceAll(" ", "-")}`}>
+            {group.category}
+            <span>{group.items.length}</span>
+          </a>
+        ))}
+      </nav>
+
+      {groupedCaptures.map((group) => (
+        <section id={group.category.toLowerCase().replaceAll(" ", "-")} class="capture-section">
+          <h2>{group.category}</h2>
+
+          <div class="capture-grid">
+            {group.items.map((item) => (
+              <a class="capture-card" href={item.publicPath} target="_blank">
+                {item.kind === "Image" ? (
+                  <img src={item.publicPath} alt={item.title} loading="lazy" />
+                ) : (
+                  <div class="pdf-preview">
+                    <span>PDF</span>
+                  </div>
+                )}
+
+                <div class="capture-card-body">
+                  <span>{item.kind}</span>
+                  <strong>{item.title}</strong>
+                  <small>{item.publicPath}</small>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
       ))}
-    </section>
+
+    </article>
   </main>
+
+  <Footer />
+
 </BaseLayout>
 
 <style>
-  .page { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-  .card { border: 1px solid #ddd; border-radius: 14px; padding: 1rem; }
-  .card p:first-child { opacity: .7; margin-top: 0; }
+  .document-review {
+    max-width: 1120px;
+  }
+
+  .archive-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 34px 0;
+  }
+
+  .archive-summary div {
+    border: 1px solid var(--border);
+    padding: 18px;
+    background: #f7f7f7;
+  }
+
+  .archive-summary strong {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .archive-summary span,
+  .archive-jump-links a,
+  .capture-card-body span,
+  .capture-card-body small {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .archive-summary span {
+    color: #555;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .archive-jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0 18px;
+  }
+
+  .archive-jump-links a {
+    border: 1px solid var(--border);
+    color: inherit;
+    display: inline-flex;
+    gap: 8px;
+    padding: 9px 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .archive-jump-links span {
+    color: var(--red);
+  }
+
+  .capture-section {
+    scroll-margin-top: 20px;
+  }
+
+  .capture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+    margin: 26px 0 52px;
+  }
+
+  .capture-card {
+    border: 1px solid var(--border);
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    text-decoration: none;
+    background: white;
+  }
+
+  .capture-card:hover {
+    border-color: #999;
+  }
+
+  .capture-card img,
+  .pdf-preview {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f2f2f2;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .capture-card img {
+    display: block;
+    object-fit: contain;
+  }
+
+  .pdf-preview {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pdf-preview span {
+    border: 3px solid var(--red);
+    color: var(--red);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 16px 18px;
+  }
+
+  .capture-card-body {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .capture-card-body span {
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .capture-card-body strong {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.25;
+  }
+
+  .capture-card-body small {
+    color: #666;
+    font-size: 0.76rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 760px) {
+    .archive-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .capture-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

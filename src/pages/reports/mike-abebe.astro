@@ -1,0 +1,493 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const miltonEntities = [
+  {
+    state: "GA",
+    name: "Abebe Caesar Ventures, LLC",
+    controlNumber: "24062142",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Universal Registered Agents, Inc.",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Eastside Ventures LLC",
+    controlNumber: "24076052",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Reid Ventures LLC",
+    controlNumber: "23069380",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mike Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe St George Ventures LLC",
+    controlNumber: "23051722",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Venture Capital LLC",
+    controlNumber: "25196986",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Westside Ventures LLC",
+    controlNumber: "24157471",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mike Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "ABEBE, INC.",
+    controlNumber: "25074611",
+    businessType: "Domestic Profit Corporation",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "ABEBE VENTURES, LLC",
+    controlNumber: "12083383",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Abebe, Mike",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Westside LLC",
+    controlNumber: "16000209",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mike Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "ABEBE & COMPANY, LLC",
+    controlNumber: "12059126",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Avon Ventures LLC",
+    controlNumber: "19102882",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mike Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Cox Ventures LLC",
+    controlNumber: "24086945",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Donald L. Cook, Jr.",
+    status: "Admin. Dissolved",
+  },
+  {
+    state: "GA",
+    name: "ABEBE HOLDINGS LLC.",
+    controlNumber: "607369",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "GA",
+    name: "Abebe Sandy Ventures LLC",
+    controlNumber: "18139565",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "249 Milton Ave SE, Atlanta, GA 30315, USA",
+    registeredAgent: "Mike Abebe",
+    status: "Active/Owes Current Year AR",
+  },
+  {
+    state: "AL",
+    name: "Abebe Blackbelt Ventures LLC",
+    controlNumber: "000-866-410",
+    businessType: "Domestic Limited Liability Company",
+    principalOffice: "2513 31st St SW, Birmingham, AL 35221",
+    registeredAgent: "Mekonnen Abebe",
+    status: "Exists",
+  },
+];
+
+const waynesboroProperties = [
+  {
+    parcelId: "065 027",
+    recordId: "9851",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "6TH ST W",
+    description: "187.64 AC PLAT 2021-146",
+  },
+  {
+    parcelId: "W07 083",
+    recordId: "13090",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "540 LIBERTY STREET",
+    description: "6TH - LIBERTY STREETS & REAR LOT",
+  },
+  {
+    parcelId: "W07 084A",
+    recordId: "13093",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "543 LIBERTY St",
+    description: '543 LIBERTY ST/BLDG "JONES BLDG"',
+  },
+  {
+    parcelId: "W07 085A",
+    recordId: "13095",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "540 SHADRACK STREET",
+    description: "VACANT LOT - SHADRACK ST",
+  },
+  {
+    parcelId: "W07 088A",
+    recordId: "13099",
+    owner: "ABEBE ST GEORGE VENTURES LLC",
+    address: "531 LIBERTY St",
+    description: ".35 AC/BLDG",
+  },
+];
+---
+
+<BaseLayout title="Mike Abebe | Who Is Abebe?">
+
+  <Header>
+    <Fragment slot="title">Mike Abebe</Fragment>
+
+    <Fragment slot="subtitle">
+      A public records profile connecting images, business entities,
+      249 Milton Ave SE, and Waynesboro property references.
+    </Fragment>
+  </Header>
+
+  <main class="article-wrap">
+    <article class="article-body report-page mike-report-page">
+
+      <p class="lede">
+        This page collects source material connected to Mike Abebe, including
+        public-facing images, Georgia entity records, address references, and
+        Waynesboro property records captured for review.
+      </p>
+
+      <div class="notice-box">
+        <strong>Scope:</strong>
+        This profile is based on public records and archived source material.
+        It separates documented references from observations and open questions.
+      </div>
+
+      <h2>Profile Image</h2>
+
+      <figure class="report-figure portrait-figure">
+        <img
+          src="/images/entities/mike-abebe-portrait.jpg"
+          alt="Mike Abebe portrait"
+        />
+        <figcaption>Portrait image stored in the archive as Mike Abebe.</figcaption>
+      </figure>
+
+      <h2>249 Milton Ave SE</h2>
+
+      <p>
+        The Atlanta address at 249 Milton Ave SE appears repeatedly in the
+        public records file as a principal office or address reference for
+        multiple Abebe-linked entities.
+      </p>
+
+      <figure class="report-figure">
+        <img
+          src="/images/properties/249-milton-ave-hq-google-maps.png"
+          alt="249 Milton Ave SE Google Maps screenshot"
+        />
+        <figcaption>Google Maps screenshot of 249 Milton Ave SE, Atlanta, Georgia.</figcaption>
+      </figure>
+
+      <h2>Atlanta Development Context</h2>
+
+      <p>
+        The Atlanta side of the research file matters because Abebe Ventures
+        presents itself as an Atlanta-based real estate development company, lists
+        249 Milton Ave SE as its address, and shows multiple Atlanta-area projects
+        alongside St. George Crossing.
+      </p>
+
+      <div class="document-list">
+        <a class="document-row" href="https://www.abebe.com/" target="_blank">
+          <span>Website</span>
+          <strong>Abebe Ventures</strong>
+          <p>
+            Public company website listing Abebe Ventures, 249 Milton Ave SE,
+            St. George Crossing, and Atlanta-area development projects.
+          </p>
+        </a>
+
+        <a
+          class="document-row"
+          href="https://www.wsbtv.com/news/local/atlanta/developer-hopes-create-city-within-city-along-atlantas-beltline/GZLWCGFOZFC2DCQFPD4RZSH5SM/"
+          target="_blank"
+        >
+          <span>Atlanta Reporting</span>
+          <strong>WSB-TV: Developer hopes to create a city within the city along Atlanta's BeltLine</strong>
+          <p>
+            April 3, 2025 WSB-TV coverage of Mike Abebe's proposed large-scale
+            Sylvan Road/BeltLine-area development in Southwest Atlanta.
+          </p>
+        </a>
+
+        <a
+          class="document-row"
+          href="https://www.facebook.com/GAFollowers/posts/developer-mike-abebe-plans-to-revitalize-25-acres-along-the-beltline-in-southwes/1115869937009246/"
+          target="_blank"
+        >
+          <span>Social Post</span>
+          <strong>GA Followers post on Mike Abebe BeltLine-area plans</strong>
+          <p>
+            Social-media reference to the proposed 25-acre Southwest Atlanta
+            revitalization plan.
+          </p>
+        </a>
+      </div>
+
+      <figure class="report-figure">
+        <img
+          src="/images/articles/mike-abebe-wsbtv-interview.png"
+          alt="Mike Abebe WSB-TV interview screenshot"
+        />
+        <figcaption>Captured WSB-TV interview image associated with Mike Abebe's Atlanta development coverage.</figcaption>
+      </figure>
+
+      <h2>LLCs and Entities in the Research File</h2>
+
+      <div class="wide-table">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Entity</th>
+              <th>Control No.</th>
+              <th>Business Type</th>
+              <th>Principal Office</th>
+              <th>Registered Agent</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {miltonEntities.map((entity) => (
+              <tr>
+                <td>{entity.state}</td>
+                <td>{entity.name}</td>
+                <td>{entity.controlNumber}</td>
+                <td>{entity.businessType}</td>
+                <td>{entity.principalOffice}</td>
+                <td>{entity.registeredAgent}</td>
+                <td>{entity.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Waynesboro Property References</h2>
+
+      <p>
+        A qPublic capture in the archive references Waynesboro properties tied
+        to Abebe St George-related records, including parcels in and around the
+        central Waynesboro street grid.
+      </p>
+
+      <div class="notice-box">
+        <strong>Condition note:</strong>
+        Several listed parcels appear to sit in the heart of Waynesboro, including
+        Liberty Street and Shadrack Street properties. Local review indicates
+        some of these properties may be abandoned, vacant, or dormant after purchase.
+        That condition should be documented with dated photos, code records,
+        parcel history, or other source material before being treated as a verified fact.
+      </div>
+
+      <figure class="report-figure">
+        <img
+          src="/images/properties/abebe-st-george-properties-waynesboro-qpublic.png"
+          alt="qPublic screenshot of Abebe St George properties in Waynesboro"
+        />
+        <figcaption>qPublic screenshot referencing Abebe St George property records in Waynesboro, Georgia.</figcaption>
+      </figure>
+
+      <h2>Waynesboro Parcels Listed in qPublic Capture</h2>
+
+      <div class="wide-table">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Parcel ID</th>
+              <th>Record ID</th>
+              <th>Owner Name</th>
+              <th>Address</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {waynesboroProperties.map((property) => (
+              <tr>
+                <td>{property.parcelId}</td>
+                <td>{property.recordId}</td>
+                <td>{property.owner}</td>
+                <td>{property.address}</td>
+                <td>{property.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Working Notes</h2>
+
+      <div class="fact-grid">
+        <div class="fact-card">
+          <span>Verified</span>
+          <p>
+            The archive contains public-facing images, address screenshots,
+            Atlanta development coverage, and entity references connected to
+            Mike Abebe and Abebe-related LLCs.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Observation</span>
+          <p>
+            249 Milton Ave SE appears across multiple Abebe-related entity records
+            and is also listed on the public Abebe Ventures website. Waynesboro
+            property records also place Abebe St George Ventures LLC on parcels
+            in central Waynesboro.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Open Question</span>
+          <p>
+            The Waynesboro property picture should be converted from screenshot
+            evidence into a parcel-by-parcel table with owner, parcel ID,
+            acreage, address, purchase date, condition notes, dated photos, and
+            source date.
+          </p>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <Footer />
+
+</BaseLayout>
+
+<style>
+  .portrait-figure {
+    max-width: 420px;
+  }
+
+  .mike-report-page {
+    max-width: 1180px;
+  }
+
+  .mike-report-page > p,
+  .mike-report-page > .lede,
+  .mike-report-page > .notice-box,
+  .mike-report-page > .fact-grid,
+  .mike-report-page > ul {
+    max-width: 780px;
+  }
+
+  .wide-table {
+    overflow-x: visible;
+    margin: 28px 0 50px;
+  }
+
+  .wide-table .report-table {
+    table-layout: fixed;
+    margin: 0;
+  }
+
+  .wide-table .report-table th,
+  .wide-table .report-table td {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    padding: 9px;
+    overflow-wrap: anywhere;
+  }
+
+  .wide-table .report-table th:nth-child(1),
+  .wide-table .report-table td:nth-child(1) {
+    width: 5%;
+  }
+
+  .wide-table .report-table th:nth-child(2),
+  .wide-table .report-table td:nth-child(2) {
+    width: 20%;
+  }
+
+  .wide-table .report-table th:nth-child(3),
+  .wide-table .report-table td:nth-child(3) {
+    width: 10%;
+  }
+
+  .wide-table .report-table th:nth-child(4),
+  .wide-table .report-table td:nth-child(4) {
+    width: 18%;
+  }
+
+  .wide-table .report-table th:nth-child(5),
+  .wide-table .report-table td:nth-child(5) {
+    width: 22%;
+  }
+
+  .wide-table .report-table th:nth-child(6),
+  .wide-table .report-table td:nth-child(6) {
+    width: 14%;
+  }
+
+  .wide-table .report-table th:nth-child(7),
+  .wide-table .report-table td:nth-child(7) {
+    width: 11%;
+  }
+
+  @media (max-width: 920px) {
+    .wide-table {
+      overflow-x: auto;
+    }
+
+    .wide-table .report-table {
+      min-width: 860px;
+    }
+  }
+</style>
