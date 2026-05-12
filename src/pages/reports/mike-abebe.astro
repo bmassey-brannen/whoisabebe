@@ -253,28 +253,54 @@ const abebeProjectHighlights = projects.filter((project) =>
         </div>
       </div>
 
-      <h2>Profile Image</h2>
+      <h2>Image Trail</h2>
 
-      <figure class="report-figure portrait-figure">
-        <img
-          src="/images/entities/mike-abebe-portrait.jpg"
-          alt="Mike Abebe portrait"
-        />
-        <figcaption>
-          Portrait image stored in the archive as Mike Abebe. The current
-          Abebe.com leadership page now uses a matching portrait, confirming
-          the image attribution used in earlier archive work.
-        </figcaption>
-      </figure>
+      <div class="portrait-pair">
+        <figure class="report-figure portrait-figure">
+          <img
+            src="/images/entities/mike-abebe-headshot.png"
+            alt="Mike Abebe current Abebe.com headshot"
+          />
+          <figcaption>
+            Current Abebe.com leadership headshot. This appears to be a newer,
+            more polished image used by Abebe Ventures on the updated company site.
+          </figcaption>
+        </figure>
+
+        <figure class="report-figure portrait-figure">
+          <img
+            src="/images/entities/mike-abebe-headshot-direct-archive.jpg"
+            alt="Older Mike Abebe Direct Invest archive headshot"
+          />
+          <figcaption>
+            Older headshot preserved as part of the Direct Invest archive trail
+            and earlier identification work.
+          </figcaption>
+        </figure>
+
+        <figure class="report-figure portrait-figure">
+          <img
+            src="/images/entities/mike-abebe-otv-interview.jpg"
+            alt="Mike Abebe OTV interview still"
+          />
+          <figcaption>
+            Still image captured from an
+            <a href="https://www.youtube.com/watch?v=PHlxiRJsMTw&t=29s" target="_blank">
+              OTV interview video
+            </a>
+            used as another public-facing visual reference for Mike Abebe.
+          </figcaption>
+        </figure>
+      </div>
 
       <h2>Current Abebe.com Leadership Page</h2>
 
       <p>
         The current Abebe Ventures leadership page now gives a fuller public
-        biography for Mike Abebe and uses the same portrait image that appears
-        in the Direct Invest and Ensley Rising research trail. That matters
-        because earlier identification relied heavily on archived websites and
-        hard-to-find image references.
+        biography for Mike Abebe and uses a newer, more groomed headshot. That
+        matters because earlier identification relied heavily on archived
+        websites, older images, and hard-to-find image references before the
+        company updated its own public profile.
       </p>
 
       <p>
@@ -523,9 +549,9 @@ const abebeProjectHighlights = projects.filter((project) =>
             and is also listed on the public Abebe Ventures website. Waynesboro
             property records also place Abebe St George Ventures LLC on parcels
             in central Waynesboro. The updated Abebe.com leadership page now
-            uses the same Mike Abebe portrait that appears in archived Direct
-            Invest and Ensley Rising material, strengthening the image-attribution
-            thread across those sources.
+            now uses a newer Mike Abebe headshot, while the older archive image
+            remains useful for connecting Direct Invest and Ensley Rising material
+            to the same person.
           </p>
         </div>
 
@@ -552,6 +578,24 @@ const abebeProjectHighlights = projects.filter((project) =>
 <style>
   .portrait-figure {
     max-width: 360px;
+  }
+
+  .portrait-pair {
+    align-items: start;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 34px 0 48px;
+  }
+
+  .portrait-pair .report-figure {
+    margin: 0;
+  }
+
+  .portrait-pair img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    width: 100%;
   }
 
   .mike-report-page {
@@ -668,7 +712,8 @@ const abebeProjectHighlights = projects.filter((project) =>
     }
 
     .dossier-grid,
-    .mini-project-grid {
+    .mini-project-grid,
+    .portrait-pair {
       grid-template-columns: 1fr;
     }
 
