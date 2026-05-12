@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Sylvan Rd",
+    "slug": "sylvan-rd",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/slyvan.png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "St. George Crossing",
+    "slug": "st-george-crossing",
+    "location": "Waynesboro, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/st-george-crossing-abebe-project.png",
+    "relatedReport": "/reports/st-george-crossing",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "249 Milton Ave",
+    "slug": "249-milton-ave",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/249-milton-abebe-project.png",
+    "relatedReport": "/reports/mike-abebe",
+    "notes": "Captured project snapshot describing a proposed 15-story mixed-use development at the former Yellow Cab site."
+  },
+  {
+    "name": "2481 and 2489 Donald Lee Hollowell",
+    "slug": "2481-2489-donald-lee-hollowell",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/2481 and 2489 Donald Lee Hollowell abebe project.png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "948 Donald Lee Hollowell",
+    "slug": "948-donald-lee-hollowell",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/948 Donald Lee Hollowell .png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "4656 Rockbridge Road",
+    "slug": "4656-rockbridge-road",
+    "location": "Stone Mountain / DeKalb County area, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/4656 Rockbridge .png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "519 Magnolia Street",
+    "slug": "519-magnolia-street",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/Magnolia St.png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "1121 Tucker Ave",
+    "slug": "1121-tucker-ave",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/Tucker Ave.png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "Vine Line",
+    "slug": "vine-line",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/Vine Line .png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  },
+  {
+    "name": "Lee Street",
+    "slug": "lee-street",
+    "location": "Atlanta, Georgia",
+    "category": "Abebe.com Development Snapshot",
+    "source": "Abebe.com",
+    "snapshotPath": "/docs/projects/Lee St.png",
+    "notes": "Captured project snapshot from the current Abebe.com development pages."
+  }
+]
