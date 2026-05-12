@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
+import projects from "../../data/projects.json";
+
 const miltonEntities = [
   {
     state: "GA",
@@ -178,15 +180,19 @@ const waynesboroProperties = [
     description: ".35 AC/BLDG",
   },
 ];
+
+const abebeProjectHighlights = projects.filter((project) =>
+  ["sylvan-rd", "st-george-crossing", "249-milton-ave", "2481-2489-donald-lee-hollowell"].includes(project.slug)
+);
 ---
 
-<BaseLayout title="Mike Abebe | Who Is Abebe?">
+<BaseLayout title="Mike Abebe & Abebe Ventures | Who Is Abebe?">
 
   <Header>
-    <Fragment slot="title">Mike Abebe</Fragment>
+    <Fragment slot="title">Mike Abebe & Abebe Ventures</Fragment>
 
     <Fragment slot="subtitle">
-      A public records profile connecting images, business entities,
+      A central dossier on the person, company, entities, projects,
       249 Milton Ave SE, and Waynesboro property references.
     </Fragment>
   </Header>
@@ -195,15 +201,56 @@ const waynesboroProperties = [
     <article class="article-body report-page mike-report-page">
 
       <p class="lede">
-        This page collects source material connected to Mike Abebe, including
-        public-facing images, Georgia entity records, address references, and
-        Waynesboro property records captured for review.
+        This page collects source material connected to Mike Abebe and Abebe
+        Ventures, including public-facing images, company claims, project
+        snapshots, Georgia entity records, address references, and Waynesboro
+        property records captured for review.
       </p>
 
       <div class="notice-box">
         <strong>Scope:</strong>
         This profile is based on public records and archived source material.
         It separates documented references from observations and open questions.
+      </div>
+
+      <h2>Why This Page Matters</h2>
+
+      <p>
+        Abebe Ventures is now the public-facing umbrella for a broad set of
+        development claims: Atlanta projects, St. George Crossing in Waynesboro,
+        the 249 Milton Ave / former Yellow Cab site, and a company biography
+        claiming more than 1,000 homes across multiple cities. This report keeps
+        those company claims next to the entity records, archived partner pages,
+        and property records needed to evaluate them.
+      </p>
+
+      <div class="fact-grid dossier-grid">
+        <div class="fact-card">
+          <span>Person</span>
+          <p>
+            Mike Abebe is identified through current Abebe.com material, archived
+            Direct Invest material, Ensley Rising archive material, and local
+            reporting tied to St. George Crossing.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Company</span>
+          <p>
+            Abebe Ventures presents the active public-facing development brand,
+            with project pages, leadership claims, and 249 Milton Ave listed in
+            the company record.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <span>Entities</span>
+          <p>
+            Georgia entity records in this archive show multiple Abebe-linked
+            LLCs and corporations using 249 Milton Ave SE as a principal office
+            or address reference.
+          </p>
+        </div>
       </div>
 
       <h2>Profile Image</h2>
@@ -344,6 +391,34 @@ const waynesboroProperties = [
         <figcaption>Captured WSB-TV interview image associated with Mike Abebe's Atlanta development coverage.</figcaption>
       </figure>
 
+      <h2>Abebe Ventures Project Claims</h2>
+
+      <p>
+        The updated Abebe.com site now lists multiple development projects. The
+        archive preserves those company-published pages as screenshots so the
+        claims can be compared against public records over time.
+      </p>
+
+      <div class="mini-project-grid">
+        {abebeProjectHighlights.map((project) => (
+          <a class="mini-project-card" href={project.snapshotPath} target="_blank" rel="noreferrer">
+            <img src={project.snapshotPath} alt={`${project.name} Abebe.com project snapshot`} loading="lazy" />
+            <span>{project.location}</span>
+            <strong>{project.name}</strong>
+          </a>
+        ))}
+      </div>
+
+      <a class="section-card feature-card" href="/projects">
+        <span>Project Archive</span>
+        <h3>All Abebe.com Project Snapshots</h3>
+        <p>
+          Review the captured Abebe.com development pages for Sylvan Rd,
+          St. George Crossing, 249 Milton Ave, Donald Lee Hollowell projects,
+          Rockbridge Road, Magnolia Street, Tucker Ave, Vine Line, and Lee Street.
+        </p>
+      </a>
+
       <h2>LLCs and Entities in the Research File</h2>
 
       <div class="wide-table">
@@ -483,6 +558,57 @@ const waynesboroProperties = [
     max-width: 940px;
   }
 
+  .dossier-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mini-project-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 28px 0 32px;
+  }
+
+  .mini-project-card {
+    border: 1px solid var(--border);
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  }
+
+  .mini-project-card img {
+    aspect-ratio: 4 / 3;
+    background: #f2f2f2;
+    border-bottom: 1px solid var(--border);
+    display: block;
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+  }
+
+  .mini-project-card span,
+  .mini-project-card strong {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 12px;
+  }
+
+  .mini-project-card span {
+    color: var(--red);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  .mini-project-card strong {
+    font-size: 0.92rem;
+    line-height: 1.25;
+    padding-bottom: 14px;
+    padding-top: 6px;
+  }
+
   .wide-table {
     overflow-x: auto;
     margin: 28px 0 50px;
@@ -539,6 +665,11 @@ const waynesboroProperties = [
   @media (max-width: 920px) {
     .mike-report-page {
       max-width: 780px;
+    }
+
+    .dossier-grid,
+    .mini-project-grid {
+      grid-template-columns: 1fr;
     }
 
     .wide-table .report-table {
