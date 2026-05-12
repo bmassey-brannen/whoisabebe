@@ -380,6 +380,72 @@ const {
           flex-direction: column;
         }
       }
+
+      @media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .top-nav {
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 14px;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+  }
+
+  .hero-content {
+    margin-left: 0;
+    margin-top: 48px;
+    padding: 0 22px 64px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.55rem;
+    line-height: 1.05;
+  }
+
+  .hero-content p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .article-body {
+    padding: 44px 20px 72px;
+  }
+
+  .lede {
+    font-size: 1.08rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    margin-top: 42px;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .section-card,
+  .document-row,
+  .fact-card {
+    padding: 20px;
+  }
+
+  .report-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
     </style>
 
     <!-- Google tag (gtag.js) -->
