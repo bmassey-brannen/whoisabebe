@@ -1,11 +1,236 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import articles from "../data/articles.json";
+import entities from "../data/entities.json";
+import documents from "../data/documents.json";
+import timeline from "../data/timeline.json";
+
+const latestArticles = articles.slice(0, 6);
+const featuredEntities = entities.slice(0, 6);
+const latestDocs = documents.slice(0, 6);
+const timelineItems = timeline.slice(0, 5);
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Who Is Abebe?">
+
+  <Header>
+    <Fragment slot="title">
+      Who Is Abebe?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Local development. Public records. Open questions.
+    </Fragment>
+  </Header>
+
+  <section class="subscribe-bar">
+
+    <span>
+      FOLLOW THE PUBLIC RECORDS TRAIL
+    </span>
+
+    <form>
+      <input type="email" placeholder="email address" />
+      <button>Subscribe</button>
+    </form>
+
+  </section>
+
+  <main class="article-wrap">
+
+    <article class="article-body">
+
+      <h2>The Investigation</h2>
+
+      <p>
+        Tracking properties, LLCs, public claims, development proposals,
+        archived websites, renderings, filings, and relationships tied
+        to the St. George Crossing project and related entities.
+      </p>
+
+      <blockquote class="report-quote">
+        "At St. George Crossing, custom homes will not just be built,
+        they'll be thoughtfully crafted to reflect both the personal vision
+        and timeless character of Waynesboro."
+      </blockquote>
+
+      <h2>Explore</h2>
+
+      <div class="section-grid">
+
+        <a class="section-card" href="/reports">
+          <span>Reports</span>
+          <p>
+            Longform investigations and narrative reporting.
+          </p>
+        </a>
+
+        <a class="section-card" href="/entities">
+          <span>Entities</span>
+          <p>
+            LLCs, organizations, individuals, and connected groups.
+          </p>
+        </a>
+
+        <a class="section-card" href="/documents">
+          <span>Documents</span>
+          <p>
+            Public filings, PDFs, screenshots, records, and source materials.
+          </p>
+        </a>
+
+        <a class="section-card" href="/network">
+          <span>Network</span>
+          <p>
+            Relationship mapping between people, addresses, and ventures.
+          </p>
+        </a>
+
+        <a class="section-card" href="/timeline">
+          <span>Timeline</span>
+          <p>
+            Chronological reconstruction of public activity.
+          </p>
+        </a>
+
+      </div>
+
+      <h2>Latest Articles</h2>
+
+      <table class="report-table">
+
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {latestArticles.map((article) => (
+
+            <tr>
+
+              <td>{article.publishedDate}</td>
+
+              <td>
+                <a href={article.url} target="_blank">
+                  {article.title}
+                </a>
+              </td>
+
+              <td>{article.source}</td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+      <h2>Featured Entities</h2>
+
+      <table class="report-table">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {featuredEntities.map((entity) => (
+
+            <tr>
+
+              <td>{entity.name}</td>
+              <td>{entity.state}</td>
+              <td>{entity.status}</td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+      <h2>Recent Documents</h2>
+
+      <table class="report-table">
+
+        <thead>
+          <tr>
+            <th>Document</th>
+            <th>Category</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {latestDocs.map((doc) => (
+
+            <tr>
+
+              <td>
+                <a href={doc.filePath} target="_blank">
+                  {doc.title}
+                </a>
+              </td>
+
+              <td>{doc.category}</td>
+              <td>{doc.type}</td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+      <h2>Timeline Highlights</h2>
+
+      <table class="report-table">
+
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          {timelineItems.map((item) => (
+
+            <tr>
+
+              <td>{item.date}</td>
+              <td>{item.title || item.event}</td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+    </article>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

@@ -1,0 +1,23 @@
+<header class="hero">
+  <nav class="top-nav">
+    <a class="logo" href="/">
+      <img src="/logos/WIA.png" alt="WiA Logo" class="logo-icon" />
+      <span>WHO IS ABEBE?</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/reports">Reports</a>
+      <a href="/entities">Entities</a>
+      <a href="/documents">Documents</a>
+      <a href="/network">Network</a>
+      <a href="/timeline">Timeline</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <h1><slot name="title" /></h1>
+    <div class="red-line"></div>
+    <p><slot name="subtitle" /></p>
+  </div>
+</header>

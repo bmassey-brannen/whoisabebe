@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import timeline from "../../data/timeline.json";
+---
+
+<BaseLayout title="Timeline | Who Is Abebe?">
+  <main class="page">
+    <h1>Timeline</h1>
+    <p>A chronological view of filings, purchases, articles, public claims, and development milestones.</p>
+
+    <section>
+      {timeline.map((item) => (
+        <article class="event">
+          <p>{item.date || "Date unknown"}</p>
+          <h2>{item.title}</h2>
+          {item.description && <span>{item.description}</span>}
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
+  .event { border-left: 3px solid #111; padding: 0 0 1.5rem 1rem; margin-bottom: 1rem; }
+  .event p { opacity: .7; margin: 0 0 .4rem; }
+  .event h2 { margin: 0 0 .4rem; }
+</style>

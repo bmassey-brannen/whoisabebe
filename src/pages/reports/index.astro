@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Reports | Who Is Abebe?">
+  <main class="page">
+    <h1>Reports</h1>
+    <p>Longform investigative writeups built from the public record archive.</p>
+
+    <article class="card">
+      <p>Featured Report</p>
+      <h2><a href="/reports/st-george-crossing/">St. George Crossing</a></h2>
+      <span>The developing master report for the 1200+ acre project and connected entities.</span>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
+  .card { border: 1px solid #ddd; border-radius: 14px; padding: 1.5rem; }
+  .card p { opacity: .7; margin-top: 0; }
+</style>

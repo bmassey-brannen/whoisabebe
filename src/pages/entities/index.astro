@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import entities from "../../data/entities.json";
+---
+
+<BaseLayout title="Entities | Who Is Abebe?">
+  <main class="page">
+    <h1>Entities</h1>
+    <p>LLCs, properties, addresses, people, and organizations in the research file.</p>
+
+    <section class="grid">
+      {entities.map((item) => (
+        <article class="card">
+          <h2>{item.name}</h2>
+          <p>{item.type || item.category || "Entity"}</p>
+          {item.address && <span>{item.address}</span>}
+          {item.description && <p>{item.description}</p>}
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .card { border: 1px solid #ddd; border-radius: 14px; padding: 1rem; }
+  .card h2 { margin-top: 0; }
+  .card span { opacity: .75; }
+</style>

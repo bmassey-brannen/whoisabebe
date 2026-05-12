@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import documents from "../../data/documents.json";
+---
+
+<BaseLayout title="Documents | Who Is Abebe?">
+  <main class="page">
+    <h1>Document Archive</h1>
+    <p>Primary documents, screenshots, PDFs, public records, and supporting evidence.</p>
+
+    <section class="grid">
+      {documents.map((item) => (
+        <article class="card">
+          <p>{item.date || "Date unknown"}</p>
+          <h2><a href={item.url || item.file || "#"}>{item.title}</a></h2>
+          {item.type && <span>{item.type}</span>}
+          {item.description && <p>{item.description}</p>}
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .card { border: 1px solid #ddd; border-radius: 14px; padding: 1rem; }
+  .card p:first-child { opacity: .7; margin-top: 0; }
+</style>
