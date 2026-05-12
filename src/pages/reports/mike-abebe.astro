@@ -269,12 +269,12 @@ const abebeProjectHighlights = projects.filter((project) =>
 
         <figure class="report-figure portrait-figure">
           <img
-            src="/images/entities/mike-abebe-headshot-direct-archive.jpg"
-            alt="Older Mike Abebe Direct Invest archive headshot"
+            src="/images/entities/mike-abebe-portrait.jpg"
+            alt="Older Mike Abebe portrait"
           />
           <figcaption>
-            Older headshot preserved as part of the Direct Invest archive trail
-            and earlier identification work.
+            Older portrait used elsewhere in the archive and retained as a
+            separate visual reference from the current Abebe.com headshot.
           </figcaption>
         </figure>
 
@@ -371,13 +371,26 @@ const abebeProjectHighlights = projects.filter((project) =>
         multiple Abebe-linked entities.
       </p>
 
-      <figure class="report-figure">
-        <img
-          src="/images/properties/249-milton-ave-hq-google-maps.png"
-          alt="249 Milton Ave SE Google Maps screenshot"
-        />
-        <figcaption>Google Maps screenshot of 249 Milton Ave SE, Atlanta, Georgia.</figcaption>
-      </figure>
+      <div class="milton-comparison">
+        <figure class="report-figure">
+          <img
+            src="/images/properties/249-milton-ave-hq-google-maps.png"
+            alt="249 Milton Ave SE Google Maps screenshot"
+          />
+          <figcaption>Google Maps screenshot of 249 Milton Ave SE, Atlanta, Georgia.</figcaption>
+        </figure>
+
+        <figure class="report-figure">
+          <img
+            src="/docs/projects/249-milton-abebe-project.png"
+            alt="Abebe.com 249 Milton Ave project snapshot"
+          />
+          <figcaption>
+            Abebe.com project snapshot showing the proposed 249 Milton Ave
+            redevelopment rendering and company description.
+          </figcaption>
+        </figure>
+      </div>
 
       <h2>249 Milton Ave Redevelopment Claim</h2>
 
@@ -390,19 +403,18 @@ const abebeProjectHighlights = projects.filter((project) =>
       </p>
 
       <p>
-        That is a notable shift in the public record: the same 249 Milton Ave
-        address appears across Abebe-linked entity filings, Yellow Cab references,
-        and the Abebe Ventures company address, while the current development
-        rendering presents the former taxi-company site as a large, bright yellow
-        residential building.
+        The comparison is stark: the same 249 Milton Ave address appears across
+        Abebe-linked entity filings, Yellow Cab references, and the Abebe
+        Ventures company address, while the current Abebe.com rendering presents
+        the former taxi-company site as a large, bright yellow residential
+        building.
       </p>
 
       <div class="notice-box">
-        <strong>Follow-up needed:</strong>
-        The archive should preserve the current Abebe.com 249 Milton Ave project
-        page or screenshot and compare it against property records, permitting,
-        zoning, BeltLine-overlay material, and older sale/listing records for
-        the former Yellow Cab property.
+        <strong>Open question:</strong>
+        The current Abebe.com 249 Milton Ave project snapshot should be compared
+        against property records, permitting, zoning, BeltLine-overlay material,
+        and older sale/listing records for the former Yellow Cab property.
       </div>
 
       <h2>Atlanta Development Context</h2>
@@ -532,8 +544,8 @@ const abebeProjectHighlights = projects.filter((project) =>
         Several listed parcels appear to sit in the heart of Waynesboro, including
         Liberty Street and Shadrack Street properties. Local review indicates
         some of these properties may be abandoned, vacant, or dormant after purchase.
-        That condition should be documented with dated photos, code records,
-        parcel history, or other source material before being treated as a verified fact.
+        Dated photos, code records, parcel history, or other source material
+        would help distinguish visual observation from verified property condition.
       </div>
 
       <figure class="report-figure">
@@ -600,12 +612,11 @@ const abebeProjectHighlights = projects.filter((project) =>
         <div class="fact-card">
           <span>Open Question</span>
           <p>
-            The Waynesboro property picture should be converted from screenshot
-            evidence into a parcel-by-parcel table with owner, parcel ID,
-            acreage, address, purchase date, condition notes, dated photos, and
-            source date. The current Abebe.com claim of more than 1,000 homes,
-            with nearly 70 percent qualifying as affordable housing, also needs
-            underlying project-level documentation.
+            The Waynesboro property picture still needs parcel-by-parcel
+            documentation with owner, parcel ID, acreage, address, purchase date,
+            condition notes, dated photos, and source date. The current Abebe.com
+            claim of more than 1,000 homes, with nearly 70 percent qualifying as
+            affordable housing, also needs underlying project-level documentation.
           </p>
         </div>
       </div>
@@ -646,6 +657,23 @@ const abebeProjectHighlights = projects.filter((project) =>
 
   .dossier-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .milton-comparison {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 34px 0 48px;
+  }
+
+  .milton-comparison .report-figure {
+    margin: 0;
+  }
+
+  .milton-comparison img {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    width: 100%;
   }
 
   .mini-project-grid {
@@ -755,7 +783,8 @@ const abebeProjectHighlights = projects.filter((project) =>
 
     .dossier-grid,
     .mini-project-grid,
-    .portrait-pair {
+    .portrait-pair,
+    .milton-comparison {
       grid-template-columns: 1fr;
     }
 
