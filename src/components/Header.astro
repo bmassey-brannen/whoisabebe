@@ -1,3 +1,7 @@
+---
+const hasMedia = Astro.slots.has("media");
+---
+
 <header class="hero">
   <nav class="top-nav">
     <a class="logo" href="/">
@@ -13,9 +17,17 @@
     </div>
   </nav>
 
-  <div class="hero-content">
-    <h1><slot name="title" /></h1>
-    <div class="red-line"></div>
-    <p><slot name="subtitle" /></p>
+  <div class:list={["hero-inner", hasMedia && "has-hero-media"]}>
+    <div class="hero-content">
+      <h1><slot name="title" /></h1>
+      <div class="red-line"></div>
+      <p><slot name="subtitle" /></p>
+    </div>
+
+    {hasMedia && (
+      <div class="hero-media">
+        <slot name="media" />
+      </div>
+    )}
   </div>
 </header>
