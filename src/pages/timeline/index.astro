@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
 import articles from "../../data/articles.json";
+import timelineRecords from "../../data/timeline.json";
 
 const getDateTime = (date) => {
   const parsed = Date.parse(date);
@@ -215,7 +216,7 @@ const articleItems = articles.map((item) => ({
   url: item.url,
 }));
 
-const timelineItems = [...researchItems, ...articleItems].sort(
+const timelineItems = [...researchItems, ...timelineRecords, ...articleItems].sort(
   (a, b) => getDateTime(a.sortDate) - getDateTime(b.sortDate)
 );
 ---
