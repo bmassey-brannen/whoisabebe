@@ -1,0 +1,147 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout title="Records to Request | Who Is Abebe?">
+
+  <Header>
+    <Fragment slot="title">Records to Request</Fragment>
+
+    <Fragment slot="subtitle">
+      Public records that would answer questions this archive cannot yet answer.
+    </Fragment>
+  </Header>
+
+  <main class="article-wrap">
+    <article class="article-body report-page">
+
+      <p class="lede">
+        Several questions in the reports depend on records that are not online.
+        This page lists ten sets of records, by office, and what each one would
+        settle.
+      </p>
+
+      <div class="notice-box">
+        <strong>Status, October 2026:</strong>
+        None of these has been requested yet. When a request is filed, it will
+        be noted here with the date and what came back.
+      </div>
+
+      <h2>Update, October 2026: The List</h2>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Office</th>
+            <th>Records</th>
+            <th>What it would settle</th>
+            <th>Route</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>City of Waynesboro, City Clerk</td>
+            <td>The signed June 15, 2026 agreement with Exhibit A; proof of funding and easement deeds; any record of payment of the developer's $423,810</td>
+            <td>What the final terms are, which parcels it covers, and whether the developer's amount was paid</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Georgia DCA, OneGeorgia Authority</td>
+            <td>Award 25wh-MCR-5-5229: award documents, conditions, dates and extensions, draw requests and reports</td>
+            <td>The deadline that applies and how the award has been administered</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>City of Waynesboro, City Clerk</td>
+            <td>Approved minutes of June 15 and September 21, 2026; the adopted award resolution and contract; council packets and minutes for 2023 and 2024</td>
+            <td>What the council actually did. The city's online agenda center lists none for 2023 or 2024</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Georgia Secretary of State</td>
+            <td>Filings for control number 24062142: name history, amendments, registrations</td>
+            <td>What the company was called before the June 15, 2026 name-change line, and who signed</td>
+            <td>Georgia Open Records Act, where it applies</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Fulton County Superior Court Clerk, deed records</td>
+            <td>Deeds, security deeds and transfer forms for the five Sylvan Road and Cox Avenue parcels</td>
+            <td>Who holds title. This is what settles the two June 2026 statements</td>
+            <td>Land-record access</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Burke County Tax Assessors and Tax Commissioner</td>
+            <td>The property record card for parcel 065 027, and the tax-sale and payment records for 2021 to 2023</td>
+            <td>Who the owner is and how the tax notices ended</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Fulton County Superior Court Clerk</td>
+            <td>Case 2021CV347317 after remand; petitions 2023CV378834 and 2023CV379385</td>
+            <td>The outcome of the case, and whether the 2023 petitions concern these parcels</td>
+            <td>Court access</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>City of Atlanta, Municipal Clerk and Office of Zoning and Development</td>
+            <td>Signed ordinance 26-O-1039; application Z-25-001 with owner authorizations and any changes</td>
+            <td>The applicant of record and any conditions</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Georgia Environmental Protection Division</td>
+            <td>The two stormwater permit notices for the site, the June 2, 2026 inspection report, and four notices to the City about its sewer plant</td>
+            <td>The permit holder, and the agency's own records</td>
+            <td>Georgia Open Records Act</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>City of Birmingham, City Clerk</td>
+            <td>Executed agreements and lease for the Ramsay-McCormack project, payment records, and signers for Ensley District Developers, LLC</td>
+            <td>What was authorized against what was paid, and who signed</td>
+            <td>Alabama open-records law</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>The Georgia Open Records Act</h2>
+
+      <p>
+        O.C.G.A. 50-18-71(a) says: "All public records shall be open for
+        personal inspection and copying," subject to exemptions. Section
+        50-18-71(b)(1)(A) says records are to be provided "within a reasonable
+        amount of time not to exceed three business days of receipt of a
+        request". If records are not available then, the agency must give a
+        description and a timeline. That is not a guarantee that everything is
+        delivered in three days. The Georgia law applies to Georgia agency
+        records. It does not set a deadline for court dockets or for Alabama.
+      </p>
+
+      <a
+        class="document-row"
+        href="https://law.georgia.gov/document/document/citizens-guide-open-government/download"
+        target="_blank"
+      >
+        <span>Georgia Attorney General</span>
+        <strong>Citizen's guide to open government</strong>
+        <p>Statutory appendix, pages 16 and 17.</p>
+      </a>
+
+    </article>
+  </main>
+
+  <Footer />
+
+</BaseLayout>
