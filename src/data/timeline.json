@@ -1,1 +1,101 @@
-[]
+[
+  {
+    "date": "December 5, 2024",
+    "sortDate": "2024-12-05",
+    "title": "Governor's office announces OneGeorgia award to the City of Waynesboro",
+    "description": "The release says: \"The City of Waynesboro was awarded $2,496,190 in OneGeorgia funds to construct street, drainage, water, and sewer infrastructure that will allow for the construction of 51 new, housing units in St. George Crossing.\" The release names the City as the recipient. It does not name the developer.",
+    "source": "Office of the Governor, press release",
+    "type": "State Announcement",
+    "url": "https://gov.georgia.gov/press-releases/2024-12-05/gov-kemp-announces-three-rural-workforce-housing-awards-onegeorgia"
+  },
+  {
+    "date": "September 23, 2025",
+    "sortDate": "2025-09-23",
+    "title": "Planning Commission minutes list the St. George Crossing regulating plan",
+    "description": "The minutes say: \"St George Crossings - Regulating Plan and Ordinance review ordinances. Changes requested. Planner will present plan at next PC meeting.\" The minutes of that later meeting were not found online.",
+    "source": "City of Waynesboro, Planning Commission minutes",
+    "type": "Municipal Document",
+    "url": "https://www.waynesboroga.com/AgendaCenter/ViewFile/Minutes/_09232025-697"
+  },
+  {
+    "date": "April 6, 2026",
+    "sortDate": "2026-04-06",
+    "title": "Federal record for EPA grant 03D02024 last modified",
+    "description": "The USAspending record names the City of Waynesboro as recipient. It shows $2,000,000 obligated, $1,292,834.94 in outlays, and a period from September 1, 2023 to June 30, 2026. The record does not name the development. It does not show whether the period was extended.",
+    "source": "USAspending.gov award record",
+    "type": "Federal Grant",
+    "url": "https://api.usaspending.gov/api/v2/awards/ASST_NON_03D02024_6800/"
+  },
+  {
+    "date": "June 15, 2026",
+    "sortDate": "2026-06-15",
+    "title": "Waynesboro council votes on the agreement with Abebe Ventures, LLC (draft minutes)",
+    "description": "The draft minutes say the council \"received the Rural Workforce Housing Initiative (RWHI) Agreement between the City of Waynesboro and Abebe Ventures, LLC for St. George Crossing\" and \"voted unanimously in favor of the motion\". These are draft minutes printed in the July 20, 2026 packet. Final approved minutes were not read.",
+    "source": "City of Waynesboro, July 20, 2026 council packet, page 3",
+    "type": "Municipal Document",
+    "url": "https://www.waynesboroga.com/AgendaCenter/ViewFile/Agenda/_07202026-700"
+  },
+  {
+    "date": "June 15, 2026",
+    "sortDate": "2026-06-15",
+    "title": "Agreement between the City of Waynesboro and Abebe Ventures, LLC placed in the council packet",
+    "description": "The packet copy is unsigned and its property exhibit is blank. It lists $2,496,190 in grant funds, $100,000 from the City and $423,810 from the developer, a total of $3,020,000, for 24 townhomes and 27 single-family homes. See the report page for the full terms and the open questions.",
+    "source": "City of Waynesboro, June 15, 2026 council packet, pages 19 to 24",
+    "type": "Municipal Document",
+    "url": "/reports/waynesboro-infrastructure-agreement"
+  },
+  {
+    "date": "June 15, 2026",
+    "sortDate": "2026-06-15",
+    "title": "Atlanta City Council adopts ordinance 26-O-1039 (Sylvan Road)",
+    "description": "The legislation file caption names \"OWNER: ABEBE CAESAR VENTURES, LLC.; APPLICANT: MEKONNEN ABEBE\". It records \"Staff Recommendation Denial / NPU Recommendation Approval / ZRB Recommendation Denial\" and \"ADOPTED BY A ROLL CALL VOTE OF 14 YEAS; 0 NAYS\".",
+    "source": "City of Atlanta, legislation file 26-O-1039",
+    "type": "Municipal Document",
+    "url": "https://atlantacityga.iqm2.com/Citizens/Detail_LegiFile.aspx?Frame=&MeetingID=4412&MediaPosition=10908.000&ID=39449&CssClass="
+  },
+  {
+    "date": "June 16, 2026",
+    "sortDate": "2026-06-16",
+    "title": "Renewal Development Group LLC issues a release on the Sylvan Road approval (a party's statement)",
+    "description": "The release says: \"Renewal Development Group and its affiliated ownership entities now own and control the project and will be responsible for all future development, investment, and implementation activities.\" This is the company's own statement. It does not name Waynesboro.",
+    "source": "PR Newswire, Renewal Development Group LLC",
+    "type": "Party Statement",
+    "url": "https://www.prnewswire.com/news-releases/renewal-development-group-celebrates-atlanta-city-council-approval-of-transformational-sylvan-road-redevelopment-302801061.html"
+  },
+  {
+    "date": "June 29, 2026",
+    "sortDate": "2026-06-29",
+    "title": "Abebe Ventures representative's statement printed in the Urbanize Atlanta article (a party's statement)",
+    "description": "Urbanize Atlanta added: \"An Abebe Ventures representative sends the following: ... Mr. Abebe remains the owner of record of each of these properties.\" The note lists the parcels. The deed records were not read.",
+    "source": "Urbanize Atlanta, update of June 29, 2026, 7:24 p.m.",
+    "type": "Party Statement",
+    "url": "https://atlanta.urbanize.city/post/sylvan-southwest-atl-3000-home-project-beltline-approval-city-images"
+  },
+  {
+    "date": "August 18, 2026",
+    "sortDate": "2026-08-18",
+    "title": "Advertisement for bids on the St. George Crossing subdivision project",
+    "description": "The legal advertisement, run August 18 to September 2, 2026, says: \"Sealed bids for construction of the St. George Crossing Subdivision Project will be received until September 17th, 2026 at 3:00 PM at the City of Waynesboro City Hall\". An advertisement is not an award.",
+    "source": "True Citizen, legal advertising",
+    "type": "Legal Notice",
+    "url": "https://www.thetruecitizen.com/articles/legal-advertising-814/"
+  },
+  {
+    "date": "September 17, 2026",
+    "sortDate": "2026-09-17",
+    "title": "Bids opened for the grant-funded infrastructure project (draft minutes)",
+    "description": "The Utilities Committee draft minutes list five bids, from $2,930,454.00 (Shockley Plumbing, Inc.) to $3,397,409.23 (Total Earth Services). They say Shockley Plumbing, Inc. \"was identified as the apparent low bidder.\" An apparent low bid is not an awarded contract.",
+    "source": "City of Waynesboro, September 21, 2026 council packet, page 4",
+    "type": "Municipal Document",
+    "url": "https://www.waynesboroga.com/AgendaCenter/ViewFile/Agenda/_09212026-711"
+  },
+  {
+    "date": "September 21, 2026",
+    "sortDate": "2026-09-21",
+    "title": "Council agenda lists a resolution to award the construction contract",
+    "description": "The agenda lists \"Resolution 2026-09-01 to Award Rural Workforce Housing Initiative (RWHI) Grant (St. George Crossing Project)\". The engineer's letter in the packet recommends an award to Shockley Plumbing, Inc. at a base bid of $2,930,454.00. The minutes of the meeting are not posted, so the vote is not confirmed.",
+    "source": "City of Waynesboro, September 21, 2026 council packet",
+    "type": "Municipal Document",
+    "url": "https://www.waynesboroga.com/AgendaCenter/ViewFile/Agenda/_09212026-711"
+  }
+]
