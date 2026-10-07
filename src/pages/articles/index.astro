@@ -14,6 +14,7 @@ import articles from "../../data/articles.json";
           <p>{item.date || item.publishedDate || "Date unknown"}</p>
           <h2><a href={item.url}>{item.title}</a></h2>
           {item.source && <span>{item.source}</span>}
+          {item.topic && <p class="topic">{item.topic}</p>}
         </article>
       ))}
     </section>
@@ -25,4 +26,5 @@ import articles from "../../data/articles.json";
   .card { border-bottom: 1px solid #ddd; padding: 1.5rem 0; }
   .card p { opacity: .7; margin: 0 0 .5rem; }
   .card h2 { margin: 0; }
+  .card .topic { margin: .5rem 0 0; }
 </style>

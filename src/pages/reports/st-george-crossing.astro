@@ -16,6 +16,7 @@ const projectDocs = documents.filter((doc) =>
 );
 
 const projectArticles = articles.filter((article) =>
+  article.area !== "Atlanta" && (
   article.topic?.toLowerCase().includes("st. george") ||
   article.topic?.toLowerCase().includes("waynesboro") ||
   article.topic?.toLowerCase().includes("development") ||
@@ -29,6 +30,7 @@ const projectArticles = articles.filter((article) =>
   article.title?.toLowerCase().includes("ground") ||
   article.title?.toLowerCase().includes("sewer") ||
   article.title?.toLowerCase().includes("grant")
+  )
 ).sort((a, b) => Date.parse(a.publishedDate) - Date.parse(b.publishedDate));
 
 const relatedEntities = [
